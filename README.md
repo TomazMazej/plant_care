@@ -1,5 +1,5 @@
 # Plant Care
-App for taking care of plants. Never let your plants die anymore.
+App for taking care of plants. Don't let your plants die anymore.
 
 ## Usage and functions
 * User selects his plants and the app notifies him when he needs to water them.
