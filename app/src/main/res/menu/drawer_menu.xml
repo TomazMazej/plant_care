@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:title="General" android:id="@+id/general">
+        <menu>
+            <item
+                android:id="@+id/home"
+                android:icon="@drawable/ic_home_black_24dp"
+                android:title="Home" />
+            <item
+                android:id="@+id/my_plants"
+                android:icon="@drawable/ic_local_florist_black_24dp"
+                android:title="My plants" />
+            <item
+                android:id="@+id/search_plants"
+                android:icon="@drawable/ic_search_black_24dp"
+                android:title="Search plants" />
+        </menu>
+    </item>
+
+    <item android:title="Other" android:id="@+id/other">
+        <menu>
+            <item
+                android:id="@+id/settings"
+                android:icon="@drawable/ic_settings_black_24dp"
+                android:title="Settings" />
+        </menu>
+    </item>
+</menu>
