@@ -18,7 +18,9 @@ import android.view.MenuItem;
 
 import com.google.android.material.navigation.NavigationView;
 import com.mazej.plantcare.fragments.MainFragment;
+import com.mazej.plantcare.fragments.MyPlantsFragment;
 
+import java.util.ArrayList;
 import java.util.Collections;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
@@ -30,6 +32,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private NavigationView navigationView;
     private FragmentManager fragmentManager;
     private FragmentTransaction fragmentTransaction;
+
+    public static ArrayList<Integer> deleteList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,6 +93,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         if(menuItem.getItemId() == R.id.home){
             fragmentTransaction.replace(R.id.container_fragment, new MainFragment());
+        }
+        if(menuItem.getItemId() == R.id.my_plants){
+            fragmentTransaction.replace(R.id.container_fragment, new MyPlantsFragment());
         }
         fragmentTransaction.commit();
         return true;
