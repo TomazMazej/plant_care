@@ -19,6 +19,8 @@ import android.view.MenuItem;
 import com.google.android.material.navigation.NavigationView;
 import com.mazej.plantcare.fragments.MainFragment;
 import com.mazej.plantcare.fragments.MyPlantsFragment;
+import com.mazej.plantcare.fragments.SearchPlantsFragment;
+import com.mazej.plantcare.fragments.SettingsFragment;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -96,6 +98,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
         if(menuItem.getItemId() == R.id.my_plants){
             fragmentTransaction.replace(R.id.container_fragment, new MyPlantsFragment());
+        }
+        if(menuItem.getItemId() == R.id.search_plants){
+            fragmentTransaction.replace(R.id.container_fragment, new SearchPlantsFragment());
+        }
+        if(menuItem.getItemId() == R.id.settings){
+            fragmentTransaction.replace(R.id.container_fragment, new SettingsFragment());
         }
         fragmentTransaction.commit();
         return true;

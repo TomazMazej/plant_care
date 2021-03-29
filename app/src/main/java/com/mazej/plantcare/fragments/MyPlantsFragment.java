@@ -5,7 +5,9 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.mazej.plantcare.R;
 import com.mazej.plantcare.adapters.MyPlantsAdapter;
@@ -25,12 +27,14 @@ public class MyPlantsFragment extends Fragment {
     public static ArrayList<MyPlant> theList;
     public static MyPlantsAdapter arrayAdapter;
 
+
     public MyPlantsFragment() {
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
 
         View view = inflater.inflate(R.layout.fragment_my_plants, container, false);
 
@@ -47,6 +51,15 @@ public class MyPlantsFragment extends Fragment {
         // Test insert... later we get data from database and add to list with loop
         MyPlant plant = new MyPlant("0", "cactus", "Kaktus", "Potegn mi ga");
         theList.add(plant);
+
+
+        myPlantsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(getActivity(),"WTF",1).show();
+            }
+        });
+
         return view;
     }
 }
