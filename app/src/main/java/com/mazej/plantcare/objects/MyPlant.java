@@ -5,13 +5,17 @@ public class MyPlant {
     private String id;
     private String image;
     private String name;
-    private String text;
+    private int water;
+    private String info;
+    private String care;
 
-    public MyPlant(String id, String image, String name, String text) {
+    public MyPlant(String id, String image, String name, int water, String info, String care) {
         this.id = id;
         this.image = image;
         this.name = name;
-        this.text = text;
+        this.water = water;
+        this.info = info;
+        this.care = care;
     }
 
     public String getId() {
@@ -38,11 +42,27 @@ public class MyPlant {
         this.name = name;
     }
 
-    public String getText() {
-        return text;
+    public int getWater() {
+        return water;
     }
 
-    public void setText(String text) {
-        this.text = text;
+    public void setWater(int water) {
+        this.water = water;
+    }
+
+    public String getInfo() {
+        return info;
+    }
+
+    public void setInfo(String info) {
+        this.info = info;
+    }
+
+    public String getCare() {
+        return care;
+    }
+
+    public void setCare(String care) {
+        this.care = care;
     }
 }

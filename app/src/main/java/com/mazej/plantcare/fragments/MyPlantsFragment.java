@@ -1,5 +1,6 @@
 package com.mazej.plantcare.fragments;
 
+import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -23,10 +24,9 @@ import static com.mazej.plantcare.MainActivity.toolbar;
 
 public class MyPlantsFragment extends Fragment {
 
-    public static ListView myPlantsList;
-    public static ArrayList<MyPlant> theList;
-    public static MyPlantsAdapter arrayAdapter;
-
+    private static ListView myPlantsList;
+    private static ArrayList<MyPlant> theList;
+    private static MyPlantsAdapter arrayAdapter;
 
     public MyPlantsFragment() {
     }
@@ -34,7 +34,6 @@ public class MyPlantsFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
 
         View view = inflater.inflate(R.layout.fragment_my_plants, container, false);
 
@@ -49,11 +48,11 @@ public class MyPlantsFragment extends Fragment {
 
         // Add plants to list
         // Test insert... later we get data from database and add to list with loop
-        MyPlant plant = new MyPlant("0", "cactus", "Kaktus", "Potegn mi ga");
+        MyPlant plant = new MyPlant("0", "cactus", "Kaktus", 5, "Potegn mi ga", "2x");
         theList.add(plant);
 
-
         myPlantsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @SuppressLint("WrongConstant")
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Toast.makeText(getActivity(),"WTF",1).show();
