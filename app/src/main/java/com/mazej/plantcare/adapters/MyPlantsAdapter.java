@@ -26,13 +26,13 @@ public class MyPlantsAdapter extends ArrayAdapter<MyPlant> {
     private String id;
     private String image;
     private String name;
-    private String text;
+    private int water;
 
     private LayoutInflater inflater;
 
     private ImageView tvImage;
     private TextView tvName;
-    private TextView tvText;
+    private TextView tvWater;
 
     public static CheckBox simpleCheckBox;
 
@@ -49,19 +49,19 @@ public class MyPlantsAdapter extends ArrayAdapter<MyPlant> {
         id = getItem(position).getId();
         image = getItem(position).getImage();
         name = getItem(position).getName();
-        text = getItem(position).getText();
+        water = getItem(position).getWater();
 
         inflater = LayoutInflater.from(mContext);
         convertView = inflater.inflate(mResource, parent, false);
 
         tvImage = (ImageView) convertView.findViewById(R.id.plantImage);
         tvName = (TextView) convertView.findViewById(R.id.plantName);
-        tvText = (TextView) convertView.findViewById(R.id.plantText);
+        tvWater = (TextView) convertView.findViewById(R.id.plantText);
         simpleCheckBox = (CheckBox) convertView.findViewById(R.id.simpleCheckBox);
 
         tvImage.setImageResource(R.mipmap.cactus);
         tvName.setText(name);
-        tvText.setText(text);
+        tvWater.setText("Needs water in " + water + " days");
 
         // Adds item to remove list
         simpleCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
