@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import static com.mazej.plantcare.MainActivity.toolbar;
 
@@ -57,6 +58,10 @@ public class MyPlantsFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Toast.makeText(getActivity(),"WTF",1).show();
+
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.container_fragment, new PlantFragment("kaktus"), "findThisFragment").addToBackStack(null).commit();
+
             }
         });
 

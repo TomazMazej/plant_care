@@ -15,9 +15,10 @@ import com.mazej.plantcare.R;
 import static com.mazej.plantcare.MainActivity.toolbar;
 
 public class PlantFragment extends Fragment {
+    private String name;
 
-    public PlantFragment() {
-
+    public PlantFragment(String name) {
+        this.name = name;
     }
 
     @Nullable
@@ -27,7 +28,7 @@ public class PlantFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_search_plants, container, false);
 
         toolbar.setTitleTextColor(Color.WHITE);
-        toolbar.setTitle("Selected Plant");
+        toolbar.setTitle(name);
 
         return view;
     }
