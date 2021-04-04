@@ -21,6 +21,8 @@ import com.mazej.plantcare.fragments.MainFragment;
 import com.mazej.plantcare.fragments.MyPlantsFragment;
 import com.mazej.plantcare.fragments.SearchPlantsFragment;
 import com.mazej.plantcare.fragments.SettingsFragment;
+import com.mazej.plantcare.fragments.SingInFragment;
+import com.mazej.plantcare.fragments.SingUpFragment;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -104,6 +106,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
         if(menuItem.getItemId() == R.id.settings){
             fragmentTransaction.replace(R.id.container_fragment, new SettingsFragment());
+        }
+        if(menuItem.getItemId() == R.id.sing_in){
+            fragmentTransaction.replace(R.id.container_fragment, new SingInFragment());
+        }
+        if(menuItem.getItemId() == R.id.sing_up){
+            fragmentTransaction.replace(R.id.container_fragment, new SingUpFragment());
         }
         fragmentTransaction.commit();
         return true;
