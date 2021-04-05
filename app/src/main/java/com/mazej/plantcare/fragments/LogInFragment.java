@@ -14,19 +14,19 @@ import com.mazej.plantcare.R;
 
 import static com.mazej.plantcare.MainActivity.toolbar;
 
-public class SingInFragment extends Fragment {
+public class LogInFragment extends Fragment {
 
-    public SingInFragment() {
+    public LogInFragment() {
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_sing_in, container, false);
+        View view = inflater.inflate(R.layout.fragment_log_in, container, false);
 
         toolbar.setTitleTextColor(Color.WHITE);
-        toolbar.setTitle("Sing In");
+        toolbar.setTitle("Login");
 
         return view;
     }

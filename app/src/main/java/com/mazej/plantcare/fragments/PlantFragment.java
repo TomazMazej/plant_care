@@ -11,14 +11,16 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.mazej.plantcare.R;
+import com.mazej.plantcare.objects.MyPlant;
 
 import static com.mazej.plantcare.MainActivity.toolbar;
 
 public class PlantFragment extends Fragment {
-    private String name;
 
-    public PlantFragment(String name) {
-        this.name = name;
+    private MyPlant plant;
+
+    public PlantFragment(MyPlant plant) {
+        this.plant = plant;
     }
 
     @Nullable
@@ -28,7 +30,7 @@ public class PlantFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_search_plants, container, false);
 
         toolbar.setTitleTextColor(Color.WHITE);
-        toolbar.setTitle(name);
+        toolbar.setTitle(plant.getName());
 
         return view;
     }

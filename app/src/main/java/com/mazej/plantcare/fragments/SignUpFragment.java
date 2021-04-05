@@ -14,19 +14,19 @@ import com.mazej.plantcare.R;
 
 import static com.mazej.plantcare.MainActivity.toolbar;
 
-public class SingUpFragment extends Fragment {
+public class SignUpFragment extends Fragment {
 
-    public SingUpFragment() {
+    public SignUpFragment() {
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_sing_up, container, false);
+        View view = inflater.inflate(R.layout.fragment_sign_up, container, false);
 
         toolbar.setTitleTextColor(Color.WHITE);
-        toolbar.setTitle("Sing Up");
+        toolbar.setTitle("Sign up");
 
         return view;
     }

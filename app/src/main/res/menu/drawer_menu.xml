@@ -22,17 +22,17 @@
     <item android:title="Other" android:id="@+id/other">
         <menu>
             <item
+                android:id="@+id/log_in"
+                android:icon="@drawable/ic_baseline_people_outline_24"
+                android:title="Log In" />
+            <item
+                android:id="@+id/sign_up"
+                android:icon="@drawable/ic_baseline_emoji_people_24"
+                android:title="Sign up" />
+            <item
                 android:id="@+id/settings"
                 android:icon="@drawable/ic_settings_black_24dp"
                 android:title="Settings" />
-            <item
-                android:id="@+id/sing_in"
-                android:icon="@drawable/ic_baseline_people_outline_24"
-                android:title="Sing In" />
-            <item
-                android:id="@+id/sing_up"
-                android:icon="@drawable/ic_baseline_emoji_people_24"
-                android:title="Sing up" />
 
         </menu>
     </item>

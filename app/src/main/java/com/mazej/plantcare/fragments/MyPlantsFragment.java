@@ -59,7 +59,7 @@ public class MyPlantsFragment extends Fragment {
                 Toast.makeText(getActivity(),"WTF",1).show();
 
                 getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.container_fragment, new PlantFragment("kaktus"), "findThisFragment").addToBackStack(null).commit();
+                        .replace(R.id.container_fragment, new PlantFragment(theList.get(position)), "findThisFragment").addToBackStack(null).commit();
 
             }
         });

@@ -18,7 +18,6 @@ import static com.mazej.plantcare.MainActivity.toolbar;
 public class SearchPlantsFragment extends Fragment {
 
     public SearchPlantsFragment() {
-
     }
 
     @Nullable

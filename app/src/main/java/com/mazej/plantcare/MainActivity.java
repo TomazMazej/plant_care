@@ -9,9 +9,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.database.Cursor;
 import android.os.Bundle;
-import android.util.SparseBooleanArray;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -21,11 +19,10 @@ import com.mazej.plantcare.fragments.MainFragment;
 import com.mazej.plantcare.fragments.MyPlantsFragment;
 import com.mazej.plantcare.fragments.SearchPlantsFragment;
 import com.mazej.plantcare.fragments.SettingsFragment;
-import com.mazej.plantcare.fragments.SingInFragment;
-import com.mazej.plantcare.fragments.SingUpFragment;
+import com.mazej.plantcare.fragments.LogInFragment;
+import com.mazej.plantcare.fragments.SignUpFragment;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
@@ -107,11 +104,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if(menuItem.getItemId() == R.id.settings){
             fragmentTransaction.replace(R.id.container_fragment, new SettingsFragment());
         }
-        if(menuItem.getItemId() == R.id.sing_in){
-            fragmentTransaction.replace(R.id.container_fragment, new SingInFragment());
+        if(menuItem.getItemId() == R.id.log_in){
+            fragmentTransaction.replace(R.id.container_fragment, new LogInFragment());
         }
-        if(menuItem.getItemId() == R.id.sing_up){
-            fragmentTransaction.replace(R.id.container_fragment, new SingUpFragment());
+        if(menuItem.getItemId() == R.id.sign_up){
+            fragmentTransaction.replace(R.id.container_fragment, new SignUpFragment());
         }
         fragmentTransaction.commit();
         return true;
