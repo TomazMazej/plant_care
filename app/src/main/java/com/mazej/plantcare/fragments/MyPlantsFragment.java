@@ -56,7 +56,6 @@ public class MyPlantsFragment extends Fragment {
             @SuppressLint("WrongConstant")
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getActivity(),"WTF",1).show();
 
                 getActivity().getSupportFragmentManager().beginTransaction()
                         .replace(R.id.container_fragment, new PlantFragment(theList.get(position)), "findThisFragment").addToBackStack(null).commit();
