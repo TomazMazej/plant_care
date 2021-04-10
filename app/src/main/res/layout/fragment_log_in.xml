@@ -118,7 +118,7 @@
                 android:layout_height="48dp"
                 android:layout_weight="1"
                 android:text="Wrong password"
-                android:textColor="#D10A0A"
+                android:textColor="#DC2929"
                 android:textSize="18sp" />
 
             <Button
