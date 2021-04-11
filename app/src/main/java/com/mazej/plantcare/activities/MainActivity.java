@@ -1,4 +1,4 @@
-package com.mazej.plantcare;
+package com.mazej.plantcare.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -15,12 +15,11 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.google.android.material.navigation.NavigationView;
+import com.mazej.plantcare.R;
 import com.mazej.plantcare.fragments.MainFragment;
 import com.mazej.plantcare.fragments.MyPlantsFragment;
 import com.mazej.plantcare.fragments.SearchPlantsFragment;
 import com.mazej.plantcare.fragments.SettingsFragment;
-import com.mazej.plantcare.fragments.LogInFragment;
-import com.mazej.plantcare.fragments.SignUpFragment;
 
 import java.util.ArrayList;
 
@@ -103,12 +102,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
         if(menuItem.getItemId() == R.id.settings){
             fragmentTransaction.replace(R.id.container_fragment, new SettingsFragment());
-        }
-        if(menuItem.getItemId() == R.id.log_in){
-            fragmentTransaction.replace(R.id.container_fragment, new LogInFragment());
-        }
-        if(menuItem.getItemId() == R.id.sign_up){
-            fragmentTransaction.replace(R.id.container_fragment, new SignUpFragment());
         }
         fragmentTransaction.commit();
         return true;

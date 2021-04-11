@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.mazej.plantcare.R;
 import com.mazej.plantcare.adapters.MyPlantsAdapter;
@@ -19,9 +18,8 @@ import java.util.ArrayList;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 
-import static com.mazej.plantcare.MainActivity.toolbar;
+import static com.mazej.plantcare.activities.MainActivity.toolbar;
 
 public class MyPlantsFragment extends Fragment {
 

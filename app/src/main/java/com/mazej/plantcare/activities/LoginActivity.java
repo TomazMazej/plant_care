@@ -1,50 +1,42 @@
-package com.mazej.plantcare.fragments;
+package com.mazej.plantcare.activities;
 
-import android.graphics.Color;
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
+import com.mazej.plantcare.R;
+import com.mazej.plantcare.database.PlantCareApi;
+import com.mazej.plantcare.database.PostSignIn;
+
+import androidx.appcompat.app.AppCompatActivity;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-import com.mazej.plantcare.R;
-import com.mazej.plantcare.database.PlantCareApi;
-import com.mazej.plantcare.database.PostSignIn;
-
-import static com.mazej.plantcare.MainActivity.toolbar;
-
-public class LogInFragment extends Fragment {
+public class LoginActivity extends AppCompatActivity {
 
     private PlantCareApi plantCareApi;
 
     private TextView email;
     private TextView password;
+    private TextView errorText;
     private Button loginButton;
+    private Button signUpButton;
 
-    public LogInFragment() {}
-
-    @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_log_in);
 
-        View view = inflater.inflate(R.layout.fragment_log_in, container, false);
-
-        toolbar.setTitleTextColor(Color.WHITE);
-        toolbar.setTitle("Login");
-
-        email = view.findViewById(R.id.login_mail);
-        password = view.findViewById(R.id.login_password);
-        loginButton = view.findViewById(R.id.buttonLogin);
+        email = findViewById(R.id.login_mail);
+        password = findViewById(R.id.login_password);
+        errorText = findViewById(R.id.error_text);
+        loginButton = findViewById(R.id.buttonLogin);
+        signUpButton = findViewById(R.id.sign_up_button);
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,10 +55,14 @@ public class LogInFragment extends Fragment {
                     public void onResponse(Call<PostSignIn> call, Response<PostSignIn> response) {
                         if (!response.isSuccessful()){ //če request ni uspešen
                             System.out.println("Response: neuspesno!");
+                            errorText.setText("Wrong email or password!");
                         }
                         else{
                             System.out.println("Response: uspešno!");
                             System.out.println(response.body().getToken());
+                            /*Intent a = new Intent(getApplicationContext(), MainActivity.class);
+                            a.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            startActivity(a);*/
                         }
                     }
 
@@ -74,11 +70,22 @@ public class LogInFragment extends Fragment {
                     public void onFailure(Call<PostSignIn> call, Throwable t) {
                         System.out.println("No response: neuspešno!");
                         System.out.println(t);
+                        errorText.setText("Failed to connect to server!");
+                        Intent a = new Intent(getApplicationContext(), MainActivity.class);
+                        a.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(a);
                     }
                 });
             }
         });
 
-        return view;
+        signUpButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent a = new Intent(getApplicationContext(), SignUpActivity.class);
+                a.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(a);
+            }
+        });
     }
 }

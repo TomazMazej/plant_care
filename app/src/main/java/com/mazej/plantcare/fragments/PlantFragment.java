@@ -13,7 +13,7 @@ import androidx.fragment.app.Fragment;
 import com.mazej.plantcare.R;
 import com.mazej.plantcare.objects.MyPlant;
 
-import static com.mazej.plantcare.MainActivity.toolbar;
+import static com.mazej.plantcare.activities.MainActivity.toolbar;
 
 public class PlantFragment extends Fragment {
 

@@ -10,7 +10,7 @@ import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.mazej.plantcare.MainActivity;
+import com.mazej.plantcare.activities.MainActivity;
 import com.mazej.plantcare.R;
 import com.mazej.plantcare.objects.MyPlant;
 

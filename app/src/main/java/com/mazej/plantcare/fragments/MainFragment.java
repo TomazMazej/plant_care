@@ -12,7 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import static com.mazej.plantcare.MainActivity.toolbar;
+import static com.mazej.plantcare.activities.MainActivity.toolbar;
 
 public class MainFragment extends Fragment {
 
