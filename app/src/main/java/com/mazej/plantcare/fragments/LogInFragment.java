@@ -42,8 +42,8 @@ public class LogInFragment extends Fragment {
         toolbar.setTitleTextColor(Color.WHITE);
         toolbar.setTitle("Login");
 
-        email = view.findViewById(R.id.email);
-        password = view.findViewById(R.id.password);
+        email = view.findViewById(R.id.login_mail);
+        password = view.findViewById(R.id.login_password);
         loginButton = view.findViewById(R.id.buttonLogin);
 
         loginButton.setOnClickListener(new View.OnClickListener() {
