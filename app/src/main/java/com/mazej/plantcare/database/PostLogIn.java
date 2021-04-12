@@ -1,12 +1,12 @@
 package com.mazej.plantcare.database;
 
-public class PostSignIn {
+public class PostLogIn {
 
     private String email;
     private String password;
     private String access_token;
 
-    public PostSignIn(String email, String password, String access_token) {
+    public PostLogIn(String email, String password, String access_token) {
         this.email = email;
         this.password = password;
         this.access_token = access_token;

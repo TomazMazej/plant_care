@@ -1,14 +1,16 @@
 package com.mazej.plantcare.activities;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.mazej.plantcare.R;
 import com.mazej.plantcare.database.PlantCareApi;
-import com.mazej.plantcare.database.PostSignIn;
+import com.mazej.plantcare.database.PostLogIn;
 
 import androidx.appcompat.app.AppCompatActivity;
 import retrofit2.Call;
@@ -27,6 +29,8 @@ public class LoginActivity extends AppCompatActivity {
     private Button loginButton;
     private Button signUpButton;
 
+    private SharedPreferences sp;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,17 +46,17 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Retrofit retrofit = new Retrofit.Builder()
-                        .baseUrl("http://192.168.0.23:3000/")
+                        .baseUrl("http://172.17.224.1:3000/")
                         .addConverterFactory(GsonConverterFactory.create())
                         .build();
 
                 plantCareApi = retrofit.create(PlantCareApi.class);
                 // Call<PostSignIn> call = plantCareApi.createLogInPost(email.getText().toString(), password.getText().toString());
-                Call<PostSignIn> call = plantCareApi.createLogInPost("info@plant-care.com", "PlantCare2021!", "");
+                Call<PostLogIn> call = plantCareApi.createLogInPost("info1@pla-care.com", "PlantCare2021!", "");
 
-                call.enqueue(new Callback<PostSignIn>() {
+                call.enqueue(new Callback<PostLogIn>() {
                     @Override
-                    public void onResponse(Call<PostSignIn> call, Response<PostSignIn> response) {
+                    public void onResponse(Call<PostLogIn> call, Response<PostLogIn> response) {
                         if (!response.isSuccessful()){ //če request ni uspešen
                             System.out.println("Response: neuspesno!");
                             errorText.setText("Wrong email or password!");
@@ -60,20 +64,26 @@ public class LoginActivity extends AppCompatActivity {
                         else{
                             System.out.println("Response: uspešno!");
                             System.out.println(response.body().getToken());
-                            /*Intent a = new Intent(getApplicationContext(), MainActivity.class);
+                            // Save access_token to shared preferences
+                            sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                            SharedPreferences.Editor editor = sp.edit();
+                            editor.putString("access_token", response.body().getToken());
+                            editor.apply();
+
+                            Intent a = new Intent(getApplicationContext(), MainActivity.class);
                             a.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                            startActivity(a);*/
+                            startActivity(a);
                         }
                     }
 
                     @Override
-                    public void onFailure(Call<PostSignIn> call, Throwable t) {
+                    public void onFailure(Call<PostLogIn> call, Throwable t) {
                         System.out.println("No response: neuspešno!");
                         System.out.println(t);
                         errorText.setText("Failed to connect to server!");
-                        Intent a = new Intent(getApplicationContext(), MainActivity.class);
+                        /*Intent a = new Intent(getApplicationContext(), MainActivity.class);
                         a.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        startActivity(a);
+                        startActivity(a);*/
                     }
                 });
             }
