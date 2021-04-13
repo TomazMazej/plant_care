@@ -20,7 +20,7 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/plantName"
+        android:id="@+id/addText"
         android:layout_width="match_parent"
         android:layout_height="71dp"
         android:layout_weight="33.3"
@@ -31,7 +31,7 @@
         android:textStyle="italic" />
 
     <TextView
-        android:id="@+id/plantText"
+        android:id="@+id/nameText"
         android:layout_width="match_parent"
         android:layout_height="71dp"
         android:layout_weight="33.3"

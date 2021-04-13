@@ -55,8 +55,8 @@ public class MyPlantsAdapter extends ArrayAdapter<MyPlant> {
         convertView = inflater.inflate(mResource, parent, false);
 
         tvImage = (ImageView) convertView.findViewById(R.id.plantImage);
-        tvName = (TextView) convertView.findViewById(R.id.plantName);
-        tvWater = (TextView) convertView.findViewById(R.id.plantText);
+        tvName = (TextView) convertView.findViewById(R.id.addText);
+        tvWater = (TextView) convertView.findViewById(R.id.nameText);
         simpleCheckBox = (CheckBox) convertView.findViewById(R.id.simpleCheckBox);
 
         tvImage.setImageResource(R.mipmap.cactus);

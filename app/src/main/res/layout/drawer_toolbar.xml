@@ -10,6 +10,6 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/colorPrimaryDark"
-        android:theme="@style/ToolbarTheme"/>
+        android:theme="@style/ToolbarTheme" />
 
 </LinearLayout>

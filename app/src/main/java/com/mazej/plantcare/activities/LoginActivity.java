@@ -81,9 +81,9 @@ public class LoginActivity extends AppCompatActivity {
                         System.out.println("No response: neuspešno!");
                         System.out.println(t);
                         errorText.setText("Failed to connect to server!");
-                        /*Intent a = new Intent(getApplicationContext(), MainActivity.class);
+                        Intent a = new Intent(getApplicationContext(), MainActivity.class);
                         a.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        startActivity(a);*/
+                        startActivity(a);
                     }
                 });
             }
