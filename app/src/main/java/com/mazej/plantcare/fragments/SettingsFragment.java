@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -74,6 +75,11 @@ public class SettingsFragment extends Fragment {
                     TextView userTextView;
                     userTextView = (TextView)getView().findViewById(R.id.usernameTV);
                     userTextView.setText(response.body().getUsername());
+
+                    Switch sw;
+                    sw = (Switch)getView().findViewById(R.id.Notifications_switch);
+                    sw.setChecked(response.body().getNotifications());
+
                 }
             }
 

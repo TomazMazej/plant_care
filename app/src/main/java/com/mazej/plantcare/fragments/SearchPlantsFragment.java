@@ -67,7 +67,7 @@ public class SearchPlantsFragment extends Fragment {
 
         // Add plants to list
         // Test insert... later we get data from database and add to list with loop
-        MyPlant plant = new MyPlant("0", "cactus", "Kaktus", 5, "Potegn mi ga", "2x");
+        MyPlant plant = new MyPlant("0", "" + getResources().getIdentifier("@mipmap/cactus", null, getActivity().getPackageName()), "Kaktus", 5, "Potegn mi ga", "2x");
         theList.add(plant);
 
         sp = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
@@ -95,15 +95,13 @@ public class SearchPlantsFragment extends Fragment {
 
                     // Print plant data
                     for(int i = 0; i< response.body().size(); i++ ){
-                        System.out.println(response.body().get(i).getName());
-                        System.out.println(response.body().get(i).getImage_path());
-                        System.out.println(response.body().get(i).getDays_water());
-                        System.out.println(response.body().get(i).getInfo());
-
                         // Doda rastlino na listo
-                        MyPlant plant = new MyPlant("" + i, response.body().get(i).getImage_path(), response.body().get(i).getName(), response.body().get(i).getDays_water(), response.body().get(i).getInfo(), "2x");
+                        int imageResource = getResources().getIdentifier("@mipmap/cactus", null, getActivity().getPackageName());
+                        //int imageResource = getResources().getIdentifier("@mipmap/" + response.body().get(i).getImage_path(), null, getActivity().getPackageName());
+                        MyPlant plant = new MyPlant("" + i, "" + imageResource, response.body().get(i).getName(), response.body().get(i).getDays_water(), response.body().get(i).getInfo(), "2x");
                         theList.add(plant);
                     }
+                    arrayAdapter.notifyDataSetChanged();
                 }
             }
 

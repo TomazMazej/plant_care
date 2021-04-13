@@ -54,7 +54,7 @@ public class SearchPlantsAdapter extends ArrayAdapter<MyPlant> {
         tvImage = (ImageView) convertView.findViewById(R.id.plantImage);
         tvName = (TextView) convertView.findViewById(R.id.plantName);
 
-        tvImage.setImageResource(R.mipmap.cactus);
+        tvImage.setImageResource(Integer.parseInt(image));
         tvName.setText(name);
 
         return convertView;
