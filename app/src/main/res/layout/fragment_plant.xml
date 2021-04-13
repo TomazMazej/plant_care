@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#7ABCDDBB"
     android:orientation="vertical">
 
     <ImageView
@@ -20,19 +20,19 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:fontFamily="@font/archivo_black"
+        android:gravity="left"
         android:text="Informations"
         android:textColor="#000"
-        android:textSize="30sp"
-        android:gravity="left" />
+        android:textSize="30sp" />
 
     <TextView
         android:id="@+id/info_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:gravity="left"
         android:text="Informacije o rastlini"
-        android:textSize="20sp"
-        android:gravity="left" />
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/care_title"
@@ -40,18 +40,18 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:fontFamily="@font/archivo_black"
+        android:gravity="left"
         android:text="Care"
         android:textColor="#000"
-        android:textSize="30sp"
-        android:gravity="left" />
+        android:textSize="30sp" />
 
     <TextView
         android:id="@+id/care_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:gravity="left"
         android:text="Informacije o negi"
-        android:textSize="20sp"
-        android:gravity="left" />
+        android:textSize="20sp" />
 
 </LinearLayout>
