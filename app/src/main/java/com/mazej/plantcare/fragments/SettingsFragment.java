@@ -1,20 +1,40 @@
 package com.mazej.plantcare.fragments;
 
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.mazej.plantcare.R;
+import com.mazej.plantcare.database.GetPlant;
+import com.mazej.plantcare.database.GetUser;
+import com.mazej.plantcare.database.PlantCareApi;
+import com.mazej.plantcare.objects.MyPlant;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 import static com.mazej.plantcare.activities.MainActivity.toolbar;
+import static com.mazej.plantcare.database.PlantCareApi.BASE_URL;
 
 public class SettingsFragment extends Fragment {
+
+    private PlantCareApi plantCareApi;
+    private SharedPreferences sp;
 
     public SettingsFragment() {
 
@@ -28,6 +48,44 @@ public class SettingsFragment extends Fragment {
 
         toolbar.setTitleTextColor(Color.WHITE);
         toolbar.setTitle("Settings");
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        sp = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
+        plantCareApi = retrofit.create(PlantCareApi.class);
+
+        String token = "Bearer " + sp.getString("access_token","DEFAULT VALUE ERR");
+
+        Call<GetUser> call = plantCareApi.createUserGet(token);
+
+        call.enqueue(new Callback<GetUser>() {
+            @Override
+            public void onResponse(Call<GetUser> call, Response<GetUser> response) {
+                if (!response.isSuccessful()) { //če request ni uspešen
+                    System.out.println("Response: neuspesno!");
+                } else {
+                    System.out.println("Response: uspešno!");
+                    System.out.println(response.body().getUsername());
+
+                    // Set username TextView to value fetched by API
+                    TextView userTextView;
+                    userTextView = (TextView)getView().findViewById(R.id.usernameTV);
+                    userTextView.setText(response.body().getUsername());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<GetUser> call, Throwable t) {
+                System.out.println("No response: neuspešno!");
+                System.out.println(t);
+            }
+        });
+
+
+
 
         return view;
     }

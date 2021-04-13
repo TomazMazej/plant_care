@@ -31,4 +31,8 @@ public interface PlantCareApi {
     @GET("plant")
     Call<List<GetPlant>> createPlantGet(
             @Header("Authorization") String access_token);
+
+    @GET("user")
+    Call<GetUser> createUserGet(
+            @Header("Authorization") String access_token);
 }
