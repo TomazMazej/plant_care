@@ -22,7 +22,8 @@
             android:text="Sign up"
             android:textColor="#FFFF"
             android:textSize="50sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:layout_marginBottom="20dp"/>
 
         <EditText
             android:id="@+id/sign_up_username"
@@ -82,6 +83,27 @@
             android:textColorHint="#5A5656"
             android:textSize="16sp" />
 
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1px"
+            android:background="#A19A9A" />
+
+        <EditText
+            android:id="@+id/sign_up_password2"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:drawableLeft="@android:drawable/ic_lock_idle_lock"
+            android:drawablePadding="8dp"
+            android:gravity="center_vertical"
+            android:hint="Confirm password"
+            android:inputType="textPassword"
+            android:padding="10dp"
+            android:singleLine="true"
+            android:textColor="#635E5E"
+            android:textColorHint="#5A5656"
+            android:textSize="16sp" />
+
         <Button
             android:id="@+id/sign_up_btn"
             android:layout_width="fill_parent"
@@ -93,5 +115,15 @@
             android:textColor="#757272"
             android:textSize="17sp"
             android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/error_text"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:text=""
+            android:textColor="#DC2929"
+            android:textSize="18sp" />
+
     </LinearLayout>
 </RelativeLayout>

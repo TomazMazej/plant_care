@@ -23,15 +23,16 @@ public class GetPlant {
     public String getName() {
         return name;
     }
+
     public String getInfo() {
         return info;
     }
+
     public String getImage_path() {
         return image_path;
     }
+
     public int getDays_water() {
         return days_water;
     }
-
-
 }

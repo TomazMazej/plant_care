@@ -14,9 +14,9 @@
         android:orientation="vertical" >
 
         <ImageView
-            android:id="@+id/imageView5"
+            android:id="@+id/title_image"
             android:layout_width="match_parent"
-            android:layout_height="62dp"
+            android:layout_height="match_parent"
             app:srcCompat="@mipmap/logo" />
 
         <EditText

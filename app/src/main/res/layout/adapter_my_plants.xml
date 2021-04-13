@@ -14,13 +14,14 @@
 
         <ImageView
             android:id="@+id/plantImage"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:src="@mipmap/cactus" />
     </LinearLayout>
 
     <TextView
-        android:id="@+id/addText"
+        android:id="@+id/nameText"
         android:layout_width="match_parent"
         android:layout_height="71dp"
         android:layout_weight="33.3"
@@ -31,7 +32,7 @@
         android:textStyle="italic" />
 
     <TextView
-        android:id="@+id/nameText"
+        android:id="@+id/waterText"
         android:layout_width="match_parent"
         android:layout_height="71dp"
         android:layout_weight="33.3"
@@ -47,7 +48,6 @@
         android:layout_height="wrap_content"
         android:text="   "
         android:checked="false"
-        android:focusable="false"
-        />
+        android:focusable="false" />
 
 </LinearLayout>

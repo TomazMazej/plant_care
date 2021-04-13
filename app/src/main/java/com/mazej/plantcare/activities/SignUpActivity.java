@@ -21,15 +21,18 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class SignUpActivity extends AppCompatActivity {
+import static com.mazej.plantcare.database.PlantCareApi.BASE_URL;
 
-    private PlantCareApi plantCareApi;
+public class SignUpActivity extends AppCompatActivity {
 
     private TextView username;
     private TextView email;
     private TextView password;
+    private TextView password2;
+    private TextView errorText;
     private Button signUpButton;
 
+    private PlantCareApi plantCareApi;
     private SharedPreferences sp;
 
     @Override
@@ -40,52 +43,56 @@ public class SignUpActivity extends AppCompatActivity {
         username = findViewById(R.id.sign_up_username);
         email = findViewById(R.id.sign_up_mail);
         password = findViewById(R.id.sign_up_password);
+        password2 = findViewById(R.id.sign_up_password2);
+        errorText = findViewById(R.id.error_text);
         signUpButton = findViewById(R.id.sign_up_btn);
 
         signUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Retrofit retrofit = new Retrofit.Builder()
-                        .baseUrl("http://172.17.224.1:3000/")
+                        .baseUrl(BASE_URL)
                         .addConverterFactory(GsonConverterFactory.create())
                         .build();
 
                 plantCareApi = retrofit.create(PlantCareApi.class);
-                // Call<PostSignIn> call = plantCareApi.createLogInPost(username.getText().toString(), email.getText().toString(), password.getText().toString());
-                Call<PostSignUp> call = plantCareApi.createSignUpPost("test1", "info1@pla-care.com", "PlantCare2021!", "");
 
-                call.enqueue(new Callback<PostSignUp>() {
-                    @Override
-                    public void onResponse(Call<PostSignUp> call, Response<PostSignUp> response) {
-                        if (!response.isSuccessful()){ //če request ni uspešen
-                            System.out.println("Response: neuspesno!");
-                            //errorText.setText("Wrong email or password!");
+                // Če se gesla ujemata
+                if(password.getText().toString().equals(password2.getText().toString())){
+                    Call<PostSignUp> call = plantCareApi.createSignUpPost(username.getText().toString(), email.getText().toString(), password.getText().toString(), "");
+
+                    call.enqueue(new Callback<PostSignUp>() {
+                        @Override
+                        public void onResponse(Call<PostSignUp> call, Response<PostSignUp> response) {
+                            if (!response.isSuccessful()){ // Če request ni uspešen
+                                System.out.println("Response: neuspesno!");
+                            }
+                            else{
+                                System.out.println("Response: uspešno!");
+                                System.out.println(response.body().getToken());
+                                // Shranimo access token v Shared Preferences
+                                sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                                SharedPreferences.Editor editor = sp.edit();
+                                editor.putString("access_token", response.body().getToken());
+                                editor.apply();
+
+                                Intent a = new Intent(getApplicationContext(), MainActivity.class);
+                                a.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                startActivity(a);
+                            }
                         }
-                        else{
-                            System.out.println("Response: uspešno!");
-                            System.out.println(response.body().getToken());
-                            // Save access_token to shared preferences
-                            sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-                            SharedPreferences.Editor editor = sp.edit();
-                            editor.putString("access_token", response.body().getToken());
-                            editor.apply();
 
-                            Intent a = new Intent(getApplicationContext(), MainActivity.class);
-                            a.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                            startActivity(a);
+                        @Override
+                        public void onFailure(Call<PostSignUp> call, Throwable t) {
+                            System.out.println("No response: neuspešno!");
+                            System.out.println(t);
+                            errorText.setText("Failed to connect to server!");
                         }
-                    }
-
-                    @Override
-                    public void onFailure(Call<PostSignUp> call, Throwable t) {
-                        System.out.println("No response: neuspešno!");
-                        System.out.println(t);
-                        //errorText.setText("Failed to connect to server!");
-                        /*Intent a = new Intent(getApplicationContext(), MainActivity.class);
-                        a.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        startActivity(a);*/
-                    }
-                });
+                    });
+                }
+                else{
+                    errorText.setText("Passwords do not match!");
+                }
             }
         });
     }

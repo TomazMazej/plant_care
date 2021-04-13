@@ -11,6 +11,8 @@ import retrofit2.http.POST;
 
 public interface PlantCareApi {
 
+    String BASE_URL = "http://172.17.224.1:3000/";
+
     @FormUrlEncoded
     @POST("auth/signin")
     Call<PostLogIn> createLogInPost(

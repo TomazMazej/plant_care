@@ -19,6 +19,8 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import static com.mazej.plantcare.database.PlantCareApi.BASE_URL;
+
 public class LoginActivity extends AppCompatActivity {
 
     private PlantCareApi plantCareApi;
@@ -46,7 +48,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Retrofit retrofit = new Retrofit.Builder()
-                        .baseUrl("http://172.17.224.1:3000/")
+                        .baseUrl(BASE_URL)
                         .addConverterFactory(GsonConverterFactory.create())
                         .build();
 
@@ -70,6 +72,7 @@ public class LoginActivity extends AppCompatActivity {
                             editor.putString("access_token", response.body().getToken());
                             editor.apply();
 
+                            // Go to MainActivity
                             Intent a = new Intent(getApplicationContext(), MainActivity.class);
                             a.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(a);
@@ -80,7 +83,7 @@ public class LoginActivity extends AppCompatActivity {
                     public void onFailure(Call<PostLogIn> call, Throwable t) {
                         System.out.println("No response: neuspešno!");
                         System.out.println(t);
-                        errorText.setText("Failed to connect to server!");
+                        errorText.setText("Failed to connect to the server!");
                         Intent a = new Intent(getApplicationContext(), MainActivity.class);
                         a.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(a);

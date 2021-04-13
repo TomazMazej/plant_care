@@ -1,6 +1,7 @@
 package com.mazej.plantcare.fragments;
 
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -9,6 +10,8 @@ import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ListView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,6 +19,8 @@ import androidx.fragment.app.Fragment;
 
 import com.mazej.plantcare.R;
 import com.mazej.plantcare.activities.MainActivity;
+import com.mazej.plantcare.adapters.MyPlantsAdapter;
+import com.mazej.plantcare.adapters.SearchPlantsAdapter;
 import com.mazej.plantcare.database.GetPlant;
 import com.mazej.plantcare.database.PlantCareApi;
 import com.mazej.plantcare.database.PostLogIn;
@@ -32,14 +37,16 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 import static com.mazej.plantcare.activities.MainActivity.toolbar;
+import static com.mazej.plantcare.database.PlantCareApi.BASE_URL;
 
 public class SearchPlantsFragment extends Fragment {
 
     private PlantCareApi plantCareApi;
     private SharedPreferences sp;
-    //private ArrayList<MyPlant> plantList;
-    //private RecyclerViewAdapter recyclerViewAdapter;
 
+    private static ListView searchPlantsList;
+    private static ArrayList<MyPlant> theList;
+    private static SearchPlantsAdapter arrayAdapter;
 
     public SearchPlantsFragment() {
     }
@@ -52,20 +59,29 @@ public class SearchPlantsFragment extends Fragment {
 
         toolbar.setTitleTextColor(Color.WHITE);
         toolbar.setTitle("Search Plants");
+
+        theList = new ArrayList<>();
+        searchPlantsList = view.findViewById(R.id.myPlantsList);
+        arrayAdapter = new SearchPlantsAdapter(getActivity().getBaseContext(), R.layout.adapter_search_plants, theList);
+        searchPlantsList.setAdapter(arrayAdapter);
+
+        // Add plants to list
+        // Test insert... later we get data from database and add to list with loop
+        MyPlant plant = new MyPlant("0", "cactus", "Kaktus", 5, "Potegn mi ga", "2x");
+        theList.add(plant);
+
         sp = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://172.17.224.1:3000/")
+                .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
         plantCareApi = retrofit.create(PlantCareApi.class);
 
-        String a = "Bearer " + sp.getString("access_token","DEFAULT VALUE ERR");
-        // String a = sp.getString("access_token","DEFAULT VALUE ERR");
-        System.out.println(a);
+        String token = "Bearer " + sp.getString("access_token","DEFAULT VALUE ERR");
 
-        Call<List<GetPlant>> call = plantCareApi.createPlantGet(a);
+        Call<List<GetPlant>> call = plantCareApi.createPlantGet(token);
 
         call.enqueue(new Callback<List<GetPlant>>() {
             @Override
@@ -84,6 +100,9 @@ public class SearchPlantsFragment extends Fragment {
                         System.out.println(response.body().get(i).getDays_water());
                         System.out.println(response.body().get(i).getInfo());
 
+                        // Doda rastlino na listo
+                        MyPlant plant = new MyPlant("" + i, response.body().get(i).getImage_path(), response.body().get(i).getName(), response.body().get(i).getDays_water(), response.body().get(i).getInfo(), "2x");
+                        theList.add(plant);
                     }
                 }
             }
@@ -92,6 +111,17 @@ public class SearchPlantsFragment extends Fragment {
             public void onFailure(Call<List<GetPlant>> call, Throwable t) {
                 System.out.println("No response: neuspešno!");
                 System.out.println(t);
+            }
+        });
+
+        searchPlantsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @SuppressLint("WrongConstant")
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.container_fragment, new PlantFragment(theList.get(position)), "findThisFragment").addToBackStack(null).commit();
+
             }
         });
 
