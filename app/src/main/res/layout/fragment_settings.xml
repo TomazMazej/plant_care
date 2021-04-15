@@ -6,59 +6,79 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/usernameTV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="70dp"
-        android:layout_marginBottom="65dp"
-        android:text="GUEST"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profile_picture" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <ImageView
-        android:id="@+id/profile_picture"
-        android:layout_width="124dp"
-        android:layout_height="131dp"
-        android:layout_marginTop="111dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@mipmap/cactus" />
+        <ImageView
+            android:id="@+id/profile_picture"
+            android:layout_width="124dp"
+            android:layout_height="131dp"
+            android:layout_marginTop="111dp"
+            app:srcCompat="@mipmap/cactus"
+            android:layout_gravity="center"/>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout"
-        android:layout_width="411dp"
-        android:layout_height="366dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        <TextView
+            android:id="@+id/usernameTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="70dp"
+            android:layout_marginBottom="65dp"
+            android:text="GUEST"
+            android:textSize="30sp"
+            android:layout_gravity="center"/>
 
         <Switch
             android:id="@+id/Notifications_switch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="60dp"
-            android:text="Notifications"
+            android:layout_marginTop="30dp"
+            android:text="Notifications  "
             android:textSize="24sp"
+            tools:ignore="UseSwitchCompatOrMaterialXml"
+            android:layout_gravity="center"/>
+        <!-- <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/Notifications_switch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="UseSwitchCompatOrMaterialXml" />
+            android:text="Notifications   "
+            android:textSize="24sp"
+            android:textOn="ON"
+            android:textOff="OFF"
+            app:showText="true"
+            android:thumb="@drawable/switch_style"
+            app:track="@drawable/switch_track"/>
 
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/Theme_switch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="32dp"
+            android:text="Theme   "
+            android:textOff="Light"
+            android:textOn="Dark"
+            android:textSize="24sp"
+            android:thumb="@drawable/switch_style"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/Notifications_switch"
+            app:showText="true"
+            app:track="@drawable/switch_track" />-->
         <Switch
             android:id="@+id/Theme_switch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="44dp"
-            android:text="Theme"
+            android:layout_marginTop="30dp"
+            android:text="Theme  "
             android:textSize="24sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Notifications_switch"
-            tools:ignore="UseSwitchCompatOrMaterialXml" />
+            tools:ignore="UseSwitchCompatOrMaterialXml"
+            android:layout_gravity="center"/>
 
         <TextView
             android:id="@+id/plant_count"
@@ -67,10 +87,8 @@
             android:layout_marginBottom="114dp"
             android:text="My plants: 0"
             android:textSize="24sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"/>
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
