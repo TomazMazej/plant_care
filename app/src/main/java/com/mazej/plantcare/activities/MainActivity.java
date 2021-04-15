@@ -20,6 +20,7 @@ import com.mazej.plantcare.fragments.MainFragment;
 import com.mazej.plantcare.fragments.MyPlantsFragment;
 import com.mazej.plantcare.fragments.SearchPlantsFragment;
 import com.mazej.plantcare.fragments.SettingsFragment;
+import com.mazej.plantcare.objects.MyPlant;
 
 import java.util.ArrayList;
 
@@ -34,6 +35,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private FragmentTransaction fragmentTransaction;
 
     public static ArrayList<Integer> deleteList;
+    public static ArrayList<Integer> addPlantsList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +47,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         toolbar.setTitle("Home");
         setSupportActionBar(toolbar);
 
+        // Drawer
         drawerLayout = findViewById(R.id.drawer);
         navigationView = findViewById(R.id.navigationView);
         navigationView.setNavigationItemSelectedListener(this);
@@ -53,6 +56,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.setDrawerIndicatorEnabled(true);
         actionBarDrawerToggle.syncState();
+
+        deleteList = new ArrayList<>();
+        addPlantsList = new ArrayList<>();
 
         // Load default fragment
         fragmentManager = getSupportFragmentManager();
@@ -63,30 +69,34 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.drawer_menu, menu);
         myMenu = menu;
-        //hideButtons();
+        hideButtons();
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) { // Handles toolbar buttons
 
-        /*switch(item.getItemId()) {
-            case R.id.add_income_btn:
+        switch(item.getItemId()) {
+            case R.id.delete_plants_btn:
+                // Tukaj izbrisemo rastline iz deleteLista, na katerega se dodajo rastline iz MyPlantsFragment
                 break;
-            case R.id.add_account_btn:
+            case R.id.add_plants_btn:
+                // Tukaj posljemo na API rastline, ki smo jih izbrali v SearchPlantsFragment in se nahajajo v myPlantsList
                 break;
             default:
                 return super.onOptionsItemSelected(item);
-        }*/
+        }
             return true;
     }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) { // Handles side nav buttons
 
+        hideButtons();
         drawerLayout.closeDrawer(GravityCompat.START);
         fragmentManager = getSupportFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
@@ -95,9 +105,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             fragmentTransaction.replace(R.id.container_fragment, new MainFragment());
         }
         if(menuItem.getItemId() == R.id.my_plants){
+            myMenu.findItem(R.id.delete_plants_btn).setVisible(true);
             fragmentTransaction.replace(R.id.container_fragment, new MyPlantsFragment());
         }
         if(menuItem.getItemId() == R.id.search_plants){
+            myMenu.findItem(R.id.add_plants_btn).setVisible(true);
             fragmentTransaction.replace(R.id.container_fragment, new SearchPlantsFragment());
         }
         if(menuItem.getItemId() == R.id.settings){
@@ -105,5 +117,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
         fragmentTransaction.commit();
         return true;
+    }
+
+    public static void hideButtons(){ //hides all the toolbar buttons
+        myMenu.findItem(R.id.general).setVisible(false);
+        myMenu.findItem(R.id.other).setVisible(false);
+        myMenu.findItem(R.id.delete_plants_btn).setVisible(false);
+        myMenu.findItem(R.id.add_plants_btn).setVisible(false);
     }
 }

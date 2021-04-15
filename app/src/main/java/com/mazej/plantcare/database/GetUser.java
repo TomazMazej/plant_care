@@ -1,6 +1,7 @@
 package com.mazej.plantcare.database;
 
 public class GetUser {
+
     private String access_token;
     private String email;
     private String username;

@@ -23,9 +23,9 @@ import static com.mazej.plantcare.activities.MainActivity.toolbar;
 
 public class MyPlantsFragment extends Fragment {
 
-    private static ListView myPlantsList;
-    private static ArrayList<MyPlant> theList;
-    private static MyPlantsAdapter arrayAdapter;
+    private ListView myPlantsList;
+    private ArrayList<MyPlant> theList;
+    private MyPlantsAdapter arrayAdapter;
 
     public MyPlantsFragment() {
     }

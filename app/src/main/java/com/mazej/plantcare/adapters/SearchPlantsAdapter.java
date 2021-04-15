@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -18,10 +20,12 @@ import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
 
-public class SearchPlantsAdapter extends ArrayAdapter<MyPlant> {
+public class SearchPlantsAdapter extends ArrayAdapter<MyPlant> implements Filterable {
 
     private Context mContext;
     private int mResource;
+    public ArrayList<MyPlant> plantsArrayList;
+    public ArrayList<MyPlant> orig;
 
     private String id;
     private String image;
@@ -38,6 +42,7 @@ public class SearchPlantsAdapter extends ArrayAdapter<MyPlant> {
         super(context, resource, objects);
         mContext = context;
         mResource = resource;
+        this.plantsArrayList = objects;
     }
 
     @NonNull
@@ -53,10 +58,77 @@ public class SearchPlantsAdapter extends ArrayAdapter<MyPlant> {
 
         tvImage = (ImageView) convertView.findViewById(R.id.plantImage);
         tvName = (TextView) convertView.findViewById(R.id.plantName);
+        simpleCheckBox = (CheckBox) convertView.findViewById(R.id.simpleCheckBox);
 
         tvImage.setImageResource(Integer.parseInt(image));
         tvName.setText(name);
 
+        // Dodamo na listo za dodajanje
+        simpleCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton arg0, boolean arg1) {
+                if (arg1) {
+                    MainActivity.addPlantsList.add(position);
+                    System.out.println(position);
+                }
+                else{
+                    for(int i = 0; i < MainActivity.addPlantsList.size(); i++){
+                        if(MainActivity.addPlantsList.get(i) == position){
+                            MainActivity.addPlantsList.remove(i);
+                        }
+                    }
+                }
+            }
+        });
         return convertView;
+    }
+
+    public Filter getFilter() {
+        return new Filter() {
+
+            @Override
+            protected FilterResults performFiltering(CharSequence constraint) {
+                final FilterResults oReturn = new FilterResults();
+                final ArrayList<MyPlant> results = new ArrayList<MyPlant>();
+                if (orig == null)
+                    orig = plantsArrayList;
+                if (constraint != null) {
+                    if (orig != null && orig.size() > 0) {
+                        for (final MyPlant g : orig) {
+                            if (g.getName().toLowerCase().contains(constraint.toString()))
+                                results.add(g);
+                        }
+                    }
+                    oReturn.values = results;
+                }
+                return oReturn;
+            }
+
+            @SuppressWarnings("unchecked")
+            @Override
+            protected void publishResults(CharSequence constraint, FilterResults results) {
+                plantsArrayList = (ArrayList<MyPlant>) results.values;
+                notifyDataSetChanged();
+            }
+        };
+    }
+
+    public void notifyDataSetChanged() {
+        super.notifyDataSetChanged();
+    }
+
+    @Override
+    public int getCount() {
+        return plantsArrayList.size();
+    }
+
+    @Override
+    public MyPlant getItem(int position) {
+        return plantsArrayList.get(position);
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return position;
     }
 }

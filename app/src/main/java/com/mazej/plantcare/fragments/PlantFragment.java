@@ -13,6 +13,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.mazej.plantcare.R;
+import com.mazej.plantcare.activities.MainActivity;
 import com.mazej.plantcare.objects.MyPlant;
 
 import static com.mazej.plantcare.activities.MainActivity.toolbar;
@@ -23,6 +24,7 @@ public class PlantFragment extends Fragment {
 
     private ImageView plantImage;
     private TextView info;
+    private TextView care;
 
     public PlantFragment(MyPlant plant) {
         this.plant = plant;
@@ -36,11 +38,14 @@ public class PlantFragment extends Fragment {
 
         toolbar.setTitleTextColor(Color.WHITE);
         toolbar.setTitle(plant.getName());
+        MainActivity.hideButtons();
 
         plantImage = view.findViewById(R.id.plant_image);
         info = view.findViewById(R.id.info_text);
+        care = view.findViewById(R.id.care_text);
 
         info.setText(plant.getInfo());
+        care.setText(plant.getCare());
 
         return view;
     }

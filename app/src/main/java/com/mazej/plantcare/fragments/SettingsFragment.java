@@ -37,8 +37,10 @@ public class SettingsFragment extends Fragment {
     private PlantCareApi plantCareApi;
     private SharedPreferences sp;
 
-    public SettingsFragment() {
+    private Switch sw;
+    private TextView userTextView;
 
+    public SettingsFragment() {
     }
 
     @Nullable
@@ -50,36 +52,32 @@ public class SettingsFragment extends Fragment {
         toolbar.setTitleTextColor(Color.WHITE);
         toolbar.setTitle("Settings");
 
+        sp = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
+        userTextView = view.findViewById(R.id.usernameTV);
+        sw = view.findViewById(R.id.Notifications_switch);
+
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        sp = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
         plantCareApi = retrofit.create(PlantCareApi.class);
 
         String token = "Bearer " + sp.getString("access_token","DEFAULT VALUE ERR");
-
         Call<GetUser> call = plantCareApi.createUserGet(token);
 
         call.enqueue(new Callback<GetUser>() {
             @Override
             public void onResponse(Call<GetUser> call, Response<GetUser> response) {
-                if (!response.isSuccessful()) { //če request ni uspešen
+                if (!response.isSuccessful()) { // Če request ni uspešen
                     System.out.println("Response: neuspesno!");
                 } else {
                     System.out.println("Response: uspešno!");
                     System.out.println(response.body().getUsername());
 
-                    // Set username TextView to value fetched by API
-                    TextView userTextView;
-                    userTextView = (TextView)getView().findViewById(R.id.usernameTV);
+                    // Nastavimo username in switch tako kot je nastavljen v API-ju
                     userTextView.setText(response.body().getUsername());
-
-                    Switch sw;
-                    sw = (Switch)getView().findViewById(R.id.Notifications_switch);
                     sw.setChecked(response.body().getNotifications());
-
                 }
             }
 
@@ -89,10 +87,6 @@ public class SettingsFragment extends Fragment {
                 System.out.println(t);
             }
         });
-
-
-
-
         return view;
     }
 }

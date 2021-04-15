@@ -6,6 +6,7 @@ public class GetPlant {
     private String name;
     private int days_water;
     private String info;
+    private String care;
     private String image_path;
 
     public GetPlant(String access_token) {
@@ -24,15 +25,39 @@ public class GetPlant {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getDays_water() {
+        return days_water;
+    }
+
+    public void setDays_water(int days_water) {
+        this.days_water = days_water;
+    }
+
     public String getInfo() {
         return info;
+    }
+
+    public void setInfo(String info) {
+        this.info = info;
+    }
+
+    public String getCare() {
+        return care;
+    }
+
+    public void setCare(String care) {
+        this.care = care;
     }
 
     public String getImage_path() {
         return image_path;
     }
 
-    public int getDays_water() {
-        return days_water;
+    public void setImage_path(String image_path) {
+        this.image_path = image_path;
     }
 }
