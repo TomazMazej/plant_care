@@ -120,12 +120,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                             } else {
                                 System.out.println("Response:DeleteUserPlant uspešno!");
+                                //TODO refresh after API call
+                                MyPlantsFragment.arrayAdapter.notifyDataSetChanged();
+
                                 fragmentManager = getSupportFragmentManager();
                                 fragmentTransaction = fragmentManager.beginTransaction();
-                                myMenu.findItem(R.id.delete_plants_btn).setVisible(true);
-                                fragmentTransaction.replace(R.id.container_fragment, new MyPlantsFragment());
-                                myMenu.findItem(R.id.delete_plants_btn).setVisible(true);
+                                fragmentTransaction.replace(R.id.container_fragment, new MainFragment());
                                 fragmentTransaction.commit();
+
+
                             }
                         }
 
@@ -156,10 +159,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                                 System.out.println(response.raw().toString());
                             } else {
                                 System.out.println("Response: PostUserPlant uspešno!");
+
                                 fragmentManager = getSupportFragmentManager();
                                 fragmentTransaction = fragmentManager.beginTransaction();
-                                myMenu.findItem(R.id.add_plants_btn).setVisible(true);
-                                fragmentTransaction.replace(R.id.container_fragment, new SearchPlantsFragment());
+                                fragmentTransaction.replace(R.id.container_fragment, new MainFragment());
                                 fragmentTransaction.commit();
                             }
                         }

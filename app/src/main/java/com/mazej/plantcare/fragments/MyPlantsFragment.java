@@ -41,7 +41,7 @@ public class MyPlantsFragment extends Fragment {
 
     private ListView myPlantsList;
     private ArrayList<MyPlant> theList;
-    private MyPlantsAdapter arrayAdapter;
+    public static MyPlantsAdapter arrayAdapter;
 
     public MyPlantsFragment() {
     }
