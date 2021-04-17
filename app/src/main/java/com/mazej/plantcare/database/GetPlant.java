@@ -8,6 +8,7 @@ public class GetPlant {
     private String info;
     private String care;
     private String image_path;
+    private int id;
 
     public GetPlant(String access_token) {
         this.access_token = access_token;
@@ -40,6 +41,8 @@ public class GetPlant {
     public String getInfo() {
         return info;
     }
+
+    public int getId() {return id;}
 
     public void setInfo(String info) {
         this.info = info;

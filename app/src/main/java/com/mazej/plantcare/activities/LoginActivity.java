@@ -71,7 +71,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 plantCareApi = retrofit.create(PlantCareApi.class);
                 // Call<PostSignIn> call = plantCareApi.createLogInPost(email.getText().toString(), password.getText().toString());
-                Call<PostLogIn> call = plantCareApi.createLogInPost("info1@pla-care.com", "PlantCare2021!", "");
+                Call<PostLogIn> call = plantCareApi.createLogInPost("info@plant-care.com", "PlantCare2021!", "");
 
                 call.enqueue(new Callback<PostLogIn>() {
                     @Override
@@ -81,7 +81,7 @@ public class LoginActivity extends AppCompatActivity {
                             errorText.setText("Wrong email or password!");
                         }
                         else{
-                            System.out.println("Response: uspešno!");
+                            System.out.println("Response: Login uspešno!");
                             // Save access_token to shared preferences
                             sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                             SharedPreferences.Editor editor = sp.edit();

@@ -9,9 +9,11 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SearchView;
 
@@ -74,10 +76,10 @@ public class SearchPlantsFragment extends Fragment implements SearchView.OnQuery
 
         // Add plants to list
         // Test insert
-        MyPlant plant = new MyPlant("0", "" + getResources().getIdentifier("@mipmap/cactus", null, getActivity().getPackageName()), "Kaktus", 5, "Potegn mi ga", "2x");
-        theList.add(plant);
-        MyPlant plant2 = new MyPlant("1", "" + getResources().getIdentifier("@mipmap/cactus", null, getActivity().getPackageName()), "Lila", 5, "Potegn mi ga", "2x");
-        theList.add(plant2);
+        //MyPlant plant = new MyPlant("0", "" + getResources().getIdentifier("@mipmap/cactus", null, getActivity().getPackageName()), "Kaktus", 5, "Potegn mi ga", "2x");
+        //theList.add(plant);
+        //MyPlant plant2 = new MyPlant("1", "" + getResources().getIdentifier("@mipmap/cactus", null, getActivity().getPackageName()), "Lila", 5, "Potegn mi ga", "2x");
+        //theList.add(plant2);
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -100,7 +102,8 @@ public class SearchPlantsFragment extends Fragment implements SearchView.OnQuery
                     for(int i = 0; i< response.body().size(); i++ ){
                         int imageResource = getResources().getIdentifier("@mipmap/cactus", null, getActivity().getPackageName());
                         //int imageResource = getResources().getIdentifier("@mipmap/" + response.body().get(i).getImage_path(), null, getActivity().getPackageName());
-                        MyPlant plant = new MyPlant("" + i, "" + imageResource, response.body().get(i).getName(), response.body().get(i).getDays_water(), response.body().get(i).getInfo(), response.body().get(i).getCare());
+                        //MyPlant plant = new MyPlant("" + i, "" + imageResource, response.body().get(i).getName(), response.body().get(i).getDays_water(), response.body().get(i).getInfo(), response.body().get(i).getCare());
+                        MyPlant plant = new MyPlant("" + response.body().get(i).getId(), "" + imageResource, response.body().get(i).getName(), response.body().get(i).getDays_water(), response.body().get(i).getInfo(), response.body().get(i).getCare());
                         theList.add(plant);
                     }
                     arrayAdapter.notifyDataSetChanged();
@@ -135,6 +138,7 @@ public class SearchPlantsFragment extends Fragment implements SearchView.OnQuery
         searchView.setQueryHint("Search Here");
     }
 
+
     @Override
     public boolean onQueryTextChange(String newText) {
 
@@ -150,4 +154,6 @@ public class SearchPlantsFragment extends Fragment implements SearchView.OnQuery
     public boolean onQueryTextSubmit(String query) {
         return false;
     }
+
+
 }

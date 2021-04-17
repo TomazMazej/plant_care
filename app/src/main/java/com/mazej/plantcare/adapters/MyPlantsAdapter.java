@@ -15,6 +15,7 @@ import com.mazej.plantcare.R;
 import com.mazej.plantcare.objects.MyPlant;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import androidx.annotation.NonNull;
 
@@ -29,6 +30,10 @@ public class MyPlantsAdapter extends ArrayAdapter<MyPlant> {
     private int water;
 
     private LayoutInflater inflater;
+
+    private int apiPlantId;
+    private Date last_water_date;
+    private int remaining_water_days;
 
     private ImageView tvImage;
     private TextView tvName;
@@ -50,6 +55,7 @@ public class MyPlantsAdapter extends ArrayAdapter<MyPlant> {
         image = getItem(position).getImage();
         name = getItem(position).getName();
         water = getItem(position).getWater();
+        //apiPlantId = getItem(position)
 
         inflater = LayoutInflater.from(mContext);
         convertView = inflater.inflate(mResource, parent, false);
@@ -68,12 +74,13 @@ public class MyPlantsAdapter extends ArrayAdapter<MyPlant> {
             @Override
             public void onCheckedChanged(CompoundButton arg0, boolean arg1) {
                 if (arg1) {
-                    MainActivity.deleteList.add(position);
+                    MainActivity.deleteList.add(getItem(position).getApiPlantId());
                     System.out.println(position);
+                    System.out.println(getItem(position).getApiPlantId());
                 }
                 else{
                     for(int i = 0; i < MainActivity.deleteList.size(); i++){
-                        if(MainActivity.deleteList.get(i) == position){
+                        if(MainActivity.deleteList.get(i) == getItem(position).getApiPlantId()){
                             MainActivity.deleteList.remove(i);
                         }
                     }

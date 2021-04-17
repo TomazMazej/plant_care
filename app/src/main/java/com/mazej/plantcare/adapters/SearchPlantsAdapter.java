@@ -68,12 +68,12 @@ public class SearchPlantsAdapter extends ArrayAdapter<MyPlant> implements Filter
             @Override
             public void onCheckedChanged(CompoundButton arg0, boolean arg1) {
                 if (arg1) {
-                    MainActivity.addPlantsList.add(position);
+                    MainActivity.addPlantsList.add(Integer.parseInt(getItem(position).getId()));
                     System.out.println(position);
                 }
                 else{
                     for(int i = 0; i < MainActivity.addPlantsList.size(); i++){
-                        if(MainActivity.addPlantsList.get(i) == position){
+                        if(MainActivity.addPlantsList.get(i) == Integer.parseInt(getItem(position).getId())){
                             MainActivity.addPlantsList.remove(i);
                         }
                     }
