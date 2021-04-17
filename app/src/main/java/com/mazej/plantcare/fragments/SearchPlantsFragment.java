@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -64,6 +65,9 @@ public class SearchPlantsFragment extends Fragment implements SearchView.OnQuery
 
         toolbar.setTitleTextColor(Color.WHITE);
         toolbar.setTitle("Search Plants");
+
+        MainActivity.myMenu.findItem(R.id.add_plants_btn).setVisible(true);
+
 
         searchPlantsList = view.findViewById(R.id.myPlantsList);
         searchView = view.findViewById(R.id.searchView);

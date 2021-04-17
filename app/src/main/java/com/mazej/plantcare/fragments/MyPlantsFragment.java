@@ -12,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.mazej.plantcare.R;
+import com.mazej.plantcare.activities.MainActivity;
 import com.mazej.plantcare.adapters.MyPlantsAdapter;
 import com.mazej.plantcare.database.GetPlant;
 import com.mazej.plantcare.database.GetUserPlant;
@@ -54,6 +55,8 @@ public class MyPlantsFragment extends Fragment {
 
         toolbar.setTitleTextColor(Color.WHITE);
         toolbar.setTitle("My Plants");
+
+        MainActivity.myMenu.findItem(R.id.delete_plants_btn).setVisible(true);
 
         theList = new ArrayList<>();
         myPlantsList = view.findViewById(R.id.myPlantsList);
