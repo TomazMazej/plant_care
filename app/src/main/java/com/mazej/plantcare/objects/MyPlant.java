@@ -13,7 +13,7 @@ public class MyPlant {
 
     private int apiPlantId;
     private Date last_water_date;
-    private int remaining_water_days;
+    private Integer remaining_water_days;
 
     public MyPlant(String id, String image, String name, int water, String info, String care) {
         this.id = id;
@@ -25,7 +25,7 @@ public class MyPlant {
     }
 
     //constructor used in myPlantsFragment
-    public MyPlant(String id, String image, String name, int water, String info, String care, int apiPlantId, Date last_water_date, int remaining_water_days) {
+    public MyPlant(String id, String image, String name, int water, String info, String care, int apiPlantId, Date last_water_date, Integer remaining_water_days) {
         this.id = id;
         this.image = image;
         this.name = name;
@@ -100,11 +100,11 @@ public class MyPlant {
         this.last_water_date = last_water_date;
     }
 
-    public int getRemaining_water_days() {
+    public Integer getRemaining_water_days() {
         return remaining_water_days;
     }
 
-    public void setRemaining_water_days(int remaining_water_days) {
+    public void setRemaining_water_days(Integer remaining_water_days) {
         this.remaining_water_days = remaining_water_days;
     }
 }

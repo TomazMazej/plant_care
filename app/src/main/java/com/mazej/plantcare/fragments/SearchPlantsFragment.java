@@ -108,6 +108,7 @@ public class SearchPlantsFragment extends Fragment implements SearchView.OnQuery
                         //int imageResource = getResources().getIdentifier("@mipmap/" + response.body().get(i).getImage_path(), null, getActivity().getPackageName());
                         //MyPlant plant = new MyPlant("" + i, "" + imageResource, response.body().get(i).getName(), response.body().get(i).getDays_water(), response.body().get(i).getInfo(), response.body().get(i).getCare());
                         MyPlant plant = new MyPlant("" + response.body().get(i).getId(), "" + imageResource, response.body().get(i).getName(), response.body().get(i).getDays_water(), response.body().get(i).getInfo(), response.body().get(i).getCare());
+                        plant.setRemaining_water_days(null);
                         theList.add(plant);
                     }
                     arrayAdapter.notifyDataSetChanged();

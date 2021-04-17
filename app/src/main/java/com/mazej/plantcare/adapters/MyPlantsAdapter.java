@@ -54,7 +54,7 @@ public class MyPlantsAdapter extends ArrayAdapter<MyPlant> {
         id = getItem(position).getId();
         image = getItem(position).getImage();
         name = getItem(position).getName();
-        water = getItem(position).getWater();
+        water = getItem(position).getRemaining_water_days();
         //apiPlantId = getItem(position)
 
         inflater = LayoutInflater.from(mContext);
@@ -67,7 +67,13 @@ public class MyPlantsAdapter extends ArrayAdapter<MyPlant> {
 
         tvImage.setImageResource(R.mipmap.cactus);
         tvName.setText(name);
-        tvWater.setText("Needs water in " + water + " days");
+
+        if(water == 0)
+            tvWater.setText("Needs water today!");
+        else if(water == 1)
+            tvWater.setText("Needs water tommmorow!");
+        else
+            tvWater.setText("Needs water in " + water + " days");
 
         // Adds item to remove list
         simpleCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
