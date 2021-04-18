@@ -6,6 +6,7 @@ import com.mazej.plantcare.objects.Plant;
 import java.util.Date;
 
 public class GetUserPlant {
+
     private String access_token;
     private Plant plant;
     private int id;

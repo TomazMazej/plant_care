@@ -3,6 +3,7 @@ package com.mazej.plantcare.database;
 import com.mazej.plantcare.objects.MyPlant;
 
 public class PostUserPlant {
+
     private String access_token;
     private int plant_id;
     private int id;

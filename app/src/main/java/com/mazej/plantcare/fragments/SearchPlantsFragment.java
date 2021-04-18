@@ -131,7 +131,6 @@ public class SearchPlantsFragment extends Fragment implements SearchView.OnQuery
                         .replace(R.id.container_fragment, new PlantFragment(theList.get(position)), "findThisFragment").addToBackStack(null).commit();
             }
         });
-
         setupSearchView();
         return view;
     }
@@ -142,7 +141,6 @@ public class SearchPlantsFragment extends Fragment implements SearchView.OnQuery
         searchView.setSubmitButtonEnabled(true);
         searchView.setQueryHint("Search Here");
     }
-
 
     @Override
     public boolean onQueryTextChange(String newText) {
@@ -159,6 +157,4 @@ public class SearchPlantsFragment extends Fragment implements SearchView.OnQuery
     public boolean onQueryTextSubmit(String query) {
         return false;
     }
-
-
 }

@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -70,12 +71,11 @@ public class PlantFragment extends Fragment {
         care.setText(plant.getCare());
 
         if(plant.getRemaining_water_days() != null){
-
             need_water.setVisibility(View.VISIBLE);
             if(plant.getRemaining_water_days() == 0)
                 need_water.setText("Needs water today!");
             else if(plant.getRemaining_water_days() == 1)
-                need_water.setText("Needs water in tommorow!");
+                need_water.setText("Needs water tommorow!");
             else
                 need_water.setText("Needs water in " + plant.getRemaining_water_days() + " days!");
 
@@ -87,7 +87,6 @@ public class PlantFragment extends Fragment {
                 @Override
                 public void onClick(View view) {
                     // API call, to water current plant
-                    plant.getApiPlantId();
                     Retrofit retrofit = new Retrofit.Builder()
                             .baseUrl(BASE_URL)
                             .addConverterFactory(GsonConverterFactory.create())
@@ -102,6 +101,7 @@ public class PlantFragment extends Fragment {
                         public void onResponse(Call<PutUserPlant> call, Response<PutUserPlant> response) {
                             if (!response.isSuccessful()){ // Če request ni uspešen
                                 System.out.println("Response: PutUserPlant neuspesno!");
+                                Toast.makeText(getActivity().getApplicationContext(),"Could not connect to server.", Toast.LENGTH_SHORT).show();
                             }
                             else{
                                 System.out.println("Response: PutUserPlant uspešno!");
@@ -114,7 +114,7 @@ public class PlantFragment extends Fragment {
                                 if(temp.getRemaining_water_days() == 0)
                                     need_water.setText("Needs water today!");
                                 else if(temp.getRemaining_water_days() == 1)
-                                    need_water.setText("Needs water in tommorow!");
+                                    need_water.setText("Needs water tommorow!");
                                 else
                                     need_water.setText("Needs water in " + temp.getRemaining_water_days() + " days!");
                             }
@@ -126,12 +126,9 @@ public class PlantFragment extends Fragment {
                             System.out.println(t);
                         }
                     });
-
                 }
             });
-
         }
-
         return view;
     }
 }

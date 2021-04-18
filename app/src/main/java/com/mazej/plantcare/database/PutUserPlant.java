@@ -5,6 +5,7 @@ import com.mazej.plantcare.objects.Plant;
 import java.util.Date;
 
 public class PutUserPlant {
+
     private String access_token;
     private Plant plant;
     private int id;

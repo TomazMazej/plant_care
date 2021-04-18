@@ -10,12 +10,17 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 import com.mazej.plantcare.R;
@@ -25,6 +30,7 @@ import com.mazej.plantcare.fragments.MainFragment;
 import com.mazej.plantcare.fragments.MyPlantsFragment;
 import com.mazej.plantcare.fragments.SearchPlantsFragment;
 import com.mazej.plantcare.fragments.SettingsFragment;
+import com.mazej.plantcare.notifications.NotificationService;
 
 import java.util.ArrayList;
 
@@ -55,6 +61,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        createNotificationsChanel();
 
         // Toolbar
         toolbar = findViewById(R.id.toolbar);
@@ -83,7 +90,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.drawer_menu, menu);
         myMenu = menu;
@@ -104,11 +110,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         switch(item.getItemId()) {
             case R.id.delete_plants_btn:
-                // Tukaj izbrisemo rastline iz deleteLista, na katerega se dodajo rastline iz MyPlantsFragment
-
                 for(int i = 0; i < deleteList.size(); i++) {
-                    System.out.println(deleteList.get(i));
-
                     Call<Void> call = plantCareApi.createUserPlantDelete(token, deleteList.get(i));
 
                     call.enqueue(new Callback<Void>() {
@@ -116,19 +118,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         public void onResponse(Call<Void> call, Response<Void> response) {
                             if (!response.isSuccessful()) { // Če request ni uspešen
                                 System.out.println("Response: DeleteUserPlant  neuspesno!");
-                                System.out.println(response.raw().toString());
-
+                                Toast.makeText(getApplicationContext(),"Could not connect to server.", Toast.LENGTH_SHORT).show();
                             } else {
                                 System.out.println("Response:DeleteUserPlant uspešno!");
-                                //TODO refresh after API call
-                                MyPlantsFragment.arrayAdapter.notifyDataSetChanged();
-
                                 fragmentManager = getSupportFragmentManager();
                                 fragmentTransaction = fragmentManager.beginTransaction();
                                 fragmentTransaction.replace(R.id.container_fragment, new MainFragment());
                                 fragmentTransaction.commit();
-
-
                             }
                         }
 
@@ -136,19 +132,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         public void onFailure(Call<Void> call, Throwable t) {
                             System.out.println("No response: DeleteUserPlant  neuspešno!");
                             System.out.println(t);
+                            Toast.makeText(getApplicationContext(),"Could not connect to server.", Toast.LENGTH_SHORT).show();
                         }
                     });
-
                 }
                 deleteList.clear();
                 break;
             case R.id.add_plants_btn:
-                // Tukaj posljemo na API rastline, ki smo jih izbrali v SearchPlantsFragment in se nahajajo v myPlantsList
-
                 for(int i = 0; i < addPlantsList.size(); i++) {
-                    System.out.println("parameter:"+ addPlantsList.get(i).toString());
-                    //API klic
-
                     Call<PostUserPlant> call = plantCareApi.createUserPlantPost(token,addPlantsList.get(i));
 
                     call.enqueue(new Callback<PostUserPlant>() {
@@ -156,10 +147,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         public void onResponse(Call<PostUserPlant> call, Response<PostUserPlant> response) {
                             if (!response.isSuccessful()) { // Če request ni uspešen
                                 System.out.println("Response: PostUserPlant  neuspesno!");
-                                System.out.println(response.raw().toString());
+                                Toast.makeText(getApplicationContext(),"Could not connect to server.", Toast.LENGTH_SHORT).show();
                             } else {
                                 System.out.println("Response: PostUserPlant uspešno!");
-
                                 fragmentManager = getSupportFragmentManager();
                                 fragmentTransaction = fragmentManager.beginTransaction();
                                 fragmentTransaction.replace(R.id.container_fragment, new MainFragment());
@@ -171,12 +161,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         public void onFailure(Call<PostUserPlant> call, Throwable t) {
                             System.out.println("No response: PostUserPlant  neuspešno!");
                             System.out.println(t);
+                            Toast.makeText(getApplicationContext(),"Could not connect to server.", Toast.LENGTH_SHORT).show();
                         }
                     });
                 }
-
                 addPlantsList.clear();
-
                 break;
             default:
                 return super.onOptionsItemSelected(item);
@@ -215,5 +204,24 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         myMenu.findItem(R.id.other).setVisible(false);
         myMenu.findItem(R.id.delete_plants_btn).setVisible(false);
         myMenu.findItem(R.id.add_plants_btn).setVisible(false);
+    }
+
+    private void createNotificationsChanel(){
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            CharSequence name = "notificationsChanel";
+            String description = "Chanel to notify when we need to water our plants.";
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            NotificationChannel chanel = new NotificationChannel("id", name, importance);
+            chanel.setDescription(description);
+
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(chanel);
+        }
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        startService(new Intent(this, NotificationService.class));
     }
 }

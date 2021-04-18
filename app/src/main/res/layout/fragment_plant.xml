@@ -71,7 +71,6 @@
         android:layout_height="wrap_content"
         android:text="Water plant"
         android:visibility="invisible"
-        android:enabled="false"
-        />
+        android:enabled="false" />
 
 </LinearLayout>
