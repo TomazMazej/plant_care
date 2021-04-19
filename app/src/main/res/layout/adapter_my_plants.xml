@@ -25,11 +25,12 @@
         android:layout_width="match_parent"
         android:layout_height="71dp"
         android:layout_weight="33.3"
+        android:fontFamily="@font/playfair_display"
         android:gravity="center"
         android:text="Name"
-        android:textSize="18dp"
         android:textAlignment="center"
         android:textColor="#000"
+        android:textSize="18dp"
         android:textStyle="italic" />
 
     <TextView
@@ -37,6 +38,7 @@
         android:layout_width="match_parent"
         android:layout_height="71dp"
         android:layout_weight="33.3"
+        android:fontFamily="@font/playfair_display"
         android:gravity="center"
         android:text="Text"
         android:textAlignment="center"

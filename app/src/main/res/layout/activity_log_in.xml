@@ -118,6 +118,7 @@
                 android:layout_width="265dp"
                 android:layout_height="48dp"
                 android:layout_weight="1"
+                android:fontFamily="@font/playfair_display"
                 android:text=""
                 android:textColor="#DC2929"
                 android:textSize="18sp" />

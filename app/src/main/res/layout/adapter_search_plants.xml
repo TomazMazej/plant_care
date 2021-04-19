@@ -16,10 +16,12 @@
         android:layout_width="match_parent"
         android:layout_height="71dp"
         android:layout_weight="50"
+        android:fontFamily="@font/playfair_display"
         android:gravity="center"
         android:text="Name"
         android:textAlignment="center"
         android:textColor="#000"
+        android:textSize="18sp"
         android:textStyle="italic" />
 
     <CheckBox
