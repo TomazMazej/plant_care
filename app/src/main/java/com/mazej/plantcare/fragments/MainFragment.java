@@ -70,8 +70,9 @@ public class MainFragment extends Fragment {
                     Toast.makeText(getActivity().getApplicationContext(),"Could not connect to server.", Toast.LENGTH_SHORT).show();
                 }
                 else{
+                    plantCounter = response.body().size();
                     for(int i = 0; i< response.body().size(); i++ ){ // Add plants to list
-                        plantCounter++;
+
                         if(response.body().get(i).getRemaining_water_days() == 0){
                             waterCounter++;
                         }
