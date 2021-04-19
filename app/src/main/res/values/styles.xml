@@ -18,7 +18,7 @@
 
     <!-- styles.xml -->
     <style name="ToolbarTheme" parent="ThemeOverlay.AppCompat.Light">
-        <item name="android:fontFamily">@font/buttermill</item>
+        <item name="android:fontFamily">@font/playfair_display_bold</item>
     </style>
 
     <style name="WhiteDrawerIconStyle" parent="Widget.AppCompat.DrawerArrowToggle">

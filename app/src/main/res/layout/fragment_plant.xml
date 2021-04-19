@@ -94,7 +94,7 @@
         android:text=""
         android:textColor="#FF0000"
         android:textSize="20sp"
-        android:visibility="visible" />
+        android:visibility="invisible" />
 
     <Button
         android:id="@+id/water_plant_button"
@@ -110,6 +110,6 @@
         android:fontFamily="@font/playfair_display_bold"
         android:text="PLANT WATERED"
         android:textColor="#ECECEC"
-        android:visibility="visible" />
+        android:visibility="invisible" />
 
 </LinearLayout>

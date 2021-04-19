@@ -16,12 +16,12 @@
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="match_parent"
-            android:layout_height="73dp"
-            app:srcCompat="@mipmap/sign_up" />
+            android:layout_height="81dp"
+            app:srcCompat="@mipmap/signupplayfair" />
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="37dp" />
+            android:layout_height="34dp" />
 
         <EditText
             android:id="@+id/sign_up_username"
