@@ -27,10 +27,10 @@
         android:layout_weight="33.3"
         android:fontFamily="@font/playfair_display"
         android:gravity="center"
-        android:text="Name"
+        android:text="@string/name"
         android:textAlignment="center"
         android:textColor="#000"
-        android:textSize="18dp"
+        android:textSize="18sp"
         android:textStyle="italic" />
 
     <TextView
@@ -40,7 +40,7 @@
         android:layout_weight="33.3"
         android:fontFamily="@font/playfair_display"
         android:gravity="center"
-        android:text="Text"
+        android:text="@string/text"
         android:textAlignment="center"
         android:textColor="#0EA80E"
         android:textStyle="bold" />
@@ -51,6 +51,6 @@
         android:layout_height="67dp"
         android:checked="false"
         android:focusable="false"
-        android:text="   " />
+        android:text=" " />
 
 </LinearLayout>

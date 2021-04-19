@@ -40,6 +40,7 @@ public class SettingsFragment extends Fragment {
 
     private Switch sw;
     private TextView userTextView;
+    private TextView plantCounter;
 
     public SettingsFragment() {
     }
@@ -56,6 +57,7 @@ public class SettingsFragment extends Fragment {
         sp = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
         userTextView = view.findViewById(R.id.usernameTV);
         sw = view.findViewById(R.id.Notifications_switch);
+        plantCounter = view.findViewById(R.id.plant_count);
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -70,16 +72,17 @@ public class SettingsFragment extends Fragment {
         call.enqueue(new Callback<GetUser>() {
             @Override
             public void onResponse(Call<GetUser> call, Response<GetUser> response) {
-                if (!response.isSuccessful()) { // Če request ni uspešen
+                if (!response.isSuccessful()) { // If request is not successful
                     System.out.println("Response: neuspesno!");
                     Toast.makeText(getActivity().getApplicationContext(),"Could not connect to server.", Toast.LENGTH_SHORT).show();
                 } else {
                     System.out.println("Response: uspešno!");
                     System.out.println(response.body().getUsername());
 
-                    // Nastavimo username in switch tako kot je nastavljen v API-ju
+                    // Set username and switch as it apears in API
                     userTextView.setText(response.body().getUsername());
                     sw.setChecked(response.body().getNotifications());
+                    plantCounter.setText("My plants: " + MainFragment.plantCounter);
                 }
             }
 

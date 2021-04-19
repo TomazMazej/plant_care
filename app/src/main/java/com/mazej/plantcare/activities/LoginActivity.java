@@ -50,6 +50,7 @@ public class LoginActivity extends AppCompatActivity {
         signUpButton = findViewById(R.id.sign_up_button);
         hidePaswordCheckbox = findViewById(R.id.hide_password_checkbox);
 
+        // Shows or hides password
         hidePaswordCheckbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton arg0, boolean arg1) {
@@ -71,13 +72,14 @@ public class LoginActivity extends AppCompatActivity {
                         .build();
 
                 plantCareApi = retrofit.create(PlantCareApi.class);
+                // TODO uncomment this
                 // Call<PostSignIn> call = plantCareApi.createLogInPost(email.getText().toString(), password.getText().toString());
                 Call<PostLogIn> call = plantCareApi.createLogInPost("info@plant-care.com", "PlantCare2021!", "");
 
                 call.enqueue(new Callback<PostLogIn>() {
                     @Override
                     public void onResponse(Call<PostLogIn> call, Response<PostLogIn> response) {
-                        if (!response.isSuccessful()){ //če request ni uspešen
+                        if (!response.isSuccessful()){ // If request is not successful
                             System.out.println("Response: neuspesno!");
                             errorText.setText("Wrong email or password!");
                         }
@@ -100,6 +102,7 @@ public class LoginActivity extends AppCompatActivity {
                     public void onFailure(Call<PostLogIn> call, Throwable t) {
                         System.out.println("No response: neuspešno!");
                         errorText.setText("Failed to connect to the server!");
+                        // TODO delete this
                         Intent a = new Intent(getApplicationContext(), MainActivity.class);
                         a.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(a);

@@ -48,23 +48,22 @@ public class NotificationService extends Service {
         super.onDestroy();
     }
 
-    //we are going to use a handler to be able to run in our TimerTask
+    // We are going to use a handler to be able to run in our TimerTask
     final Handler handler = new Handler();
 
     public void startTimer() {
-        //set a new Timer
+        // Set a new Timer
         timer = new Timer();
 
-        //initialize the TimerTask's job
+        // Initialize the TimerTask's job
         initializeTimerTask();
 
-        //schedule the timer, after the first 5000ms the TimerTask will run every 10000ms
+        // Schedule the timer, after the first 5000ms the TimerTask will run every 10000ms
         timer.schedule(timerTask, 5000, daysUntilWater * 1000 * 86400); //
-        //timer.schedule(timerTask, 5000,1000); //
     }
 
     public void stoptimertask() {
-        //stop the timer, if it's not already null
+        // Stop the timer, if it's not already null
         if (timer != null) {
             timer.cancel();
             timer = null;
@@ -72,11 +71,10 @@ public class NotificationService extends Service {
     }
 
     public void initializeTimerTask() {
-
         timerTask = new TimerTask() {
             public void run() {
 
-                //use a handler to run a toast that shows the current timestamp
+                // Use a handler to run a toast that shows the current timestamp
                 handler.post(new Runnable() {
                     public void run() {
                         createNotification();

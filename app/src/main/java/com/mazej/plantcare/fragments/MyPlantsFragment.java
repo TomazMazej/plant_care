@@ -57,22 +57,18 @@ public class MyPlantsFragment extends Fragment {
 
         toolbar.setTitleTextColor(Color.WHITE);
         toolbar.setTitle("My Plants");
-
         MainActivity.myMenu.findItem(R.id.delete_plants_btn).setVisible(true);
 
         theList = new ArrayList<>();
         myPlantsList = view.findViewById(R.id.myPlantsList);
 
+        // Set custom adapter
         arrayAdapter = new MyPlantsAdapter(getActivity().getBaseContext(), R.layout.adapter_my_plants, theList);
         myPlantsList.setAdapter(arrayAdapter);
 
         sp = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
 
-        // Add plants to list
-        // Test insert... later we get data from database and add to list with loop
-        // MyPlant plant = new MyPlant("0", "cactus", "Kaktus", 5, "Potegn mi ga", "2x");
-        // theList.add(plant);
-
+        // On list item click we change fragment and send object to its constructor
         myPlantsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @SuppressLint("WrongConstant")
             @Override
@@ -80,7 +76,6 @@ public class MyPlantsFragment extends Fragment {
 
                 getActivity().getSupportFragmentManager().beginTransaction()
                         .replace(R.id.container_fragment, new PlantFragment(theList.get(position)), "findThisFragment").addToBackStack(null).commit();
-
             }
         });
 
@@ -97,7 +92,7 @@ public class MyPlantsFragment extends Fragment {
         call.enqueue(new Callback<List<GetUserPlant>>() {
             @Override
             public void onResponse(Call<List<GetUserPlant>> call, Response<List<GetUserPlant>> response) {
-                if (!response.isSuccessful()){ // Če request ni uspešen
+                if (!response.isSuccessful()){ // If request is not successful
                     System.out.println("Response: GetUserPlant neuspesno!");
                     Toast.makeText(getActivity().getApplicationContext(),"Could not connect to server.", Toast.LENGTH_SHORT).show();
                 }
@@ -106,9 +101,11 @@ public class MyPlantsFragment extends Fragment {
                     int daysUntilWater = 1000;
                     for(int i = 0; i< response.body().size(); i++ ){ // Add plants to list
                         int imageResource = getResources().getIdentifier("@mipmap/cactus", null, getActivity().getPackageName());
+                        // TODO uncomment
                         //int imageResource = getResources().getIdentifier("@mipmap/" + response.body().get(i).getImage_path(), null, getActivity().getPackageName());
                         //MyPlant plant = new MyPlant("" + i, "" + imageResource, response.body().get(i).getName(), response.body().get(i).getDays_water(), response.body().get(i).getInfo(), response.body().get(i).getCare());
                         MyPlant plant = new MyPlant("" + response.body().get(i).getPlant().getId(), "" + imageResource, response.body().get(i).getPlant().getName(), response.body().get(i).getPlant().getDays_water(), response.body().get(i).getPlant().getInfo(), response.body().get(i).getPlant().getCare(), response.body().get(i).getId(),response.body().get(i).getLast_water_day(),response.body().get(i).getRemaining_water_days());
+                        // Tell notification service when to raise notification
                         if(daysUntilWater > response.body().get(i).getRemaining_water_days()){
                             daysUntilWater = response.body().get(i).getRemaining_water_days();
                         }
@@ -123,7 +120,6 @@ public class MyPlantsFragment extends Fragment {
             public void onFailure(Call<List<GetUserPlant>> call, Throwable t) {
                 System.out.println("No response: GetUserPlant neuspešno!");
                 System.out.println(t);
-                Toast.makeText(getActivity().getApplicationContext(),"Could not connect to server.", Toast.LENGTH_SHORT).show();
             }
         });
         return view;

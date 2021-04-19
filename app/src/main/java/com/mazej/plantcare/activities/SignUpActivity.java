@@ -57,20 +57,19 @@ public class SignUpActivity extends AppCompatActivity {
 
                 plantCareApi = retrofit.create(PlantCareApi.class);
 
-                // Če se gesla ujemata
+                // If passwords match
                 if(password.getText().toString().equals(password2.getText().toString())){
                     Call<PostSignUp> call = plantCareApi.createSignUpPost(username.getText().toString(), email.getText().toString(), password.getText().toString(), "");
 
                     call.enqueue(new Callback<PostSignUp>() {
                         @Override
                         public void onResponse(Call<PostSignUp> call, Response<PostSignUp> response) {
-                            if (!response.isSuccessful()){ // Če request ni uspešen
+                            if (!response.isSuccessful()){ // If request is not successful
                                 System.out.println("Response: neuspesno!");
                             }
                             else{
                                 System.out.println("Response: uspešno!");
-                                System.out.println(response.body().getToken());
-                                // Shranimo access token v Shared Preferences
+                                // Save access token to Shared Preferences
                                 sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                                 SharedPreferences.Editor editor = sp.edit();
                                 editor.putString("access_token", response.body().getToken());

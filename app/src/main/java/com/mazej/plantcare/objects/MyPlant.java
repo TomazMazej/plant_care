@@ -24,7 +24,7 @@ public class MyPlant {
         this.care = care;
     }
 
-    //constructor used in myPlantsFragment
+    // Constructor used in myPlantsFragment
     public MyPlant(String id, String image, String name, int water, String info, String care, int apiPlantId, Date last_water_date, Integer remaining_water_days) {
         this.id = id;
         this.image = image;

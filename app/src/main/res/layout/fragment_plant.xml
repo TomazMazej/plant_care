@@ -36,8 +36,8 @@
         android:layout_marginEnd="10dp"
         android:layout_marginRight="10dp"
         android:fontFamily="@font/playfair_display_bold"
-        android:gravity="left"
-        android:text="Informations"
+        android:gravity="start"
+        android:text="@string/informations"
         android:textColor="#000"
         android:textSize="30sp" />
 
@@ -67,8 +67,8 @@
         android:layout_marginEnd="10dp"
         android:layout_marginRight="10dp"
         android:fontFamily="@font/playfair_display_bold"
-        android:gravity="left"
-        android:text="Care"
+        android:gravity="start"
+        android:text="@string/care"
         android:textColor="#000"
         android:textSize="30sp" />
 

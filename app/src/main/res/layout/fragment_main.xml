@@ -24,7 +24,7 @@
         android:layout_marginTop="30dp"
         android:fontFamily="@font/playfair_display_bold"
         android:gravity="center_horizontal"
-        android:text="WELCOME BACK!"
+        android:text="@string/welcome_back"
         android:textColor="#5EAF6A"
         android:textSize="30sp" />
 
@@ -35,7 +35,7 @@
         android:layout_marginTop="20dp"
         android:fontFamily="@font/playfair_display"
         android:gravity="center_horizontal"
-        android:text="All your plants are taken care of."
+        android:text="@string/all_your_plants_are_taken_care_of"
         android:textSize="20sp" />
 
 </LinearLayout>

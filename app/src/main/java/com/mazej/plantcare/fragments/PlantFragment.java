@@ -99,14 +99,14 @@ public class PlantFragment extends Fragment {
                     call.enqueue(new Callback<PutUserPlant>() {
                         @Override
                         public void onResponse(Call<PutUserPlant> call, Response<PutUserPlant> response) {
-                            if (!response.isSuccessful()){ // Če request ni uspešen
+                            if (!response.isSuccessful()){ // If request is not successful
                                 System.out.println("Response: PutUserPlant neuspesno!");
                                 Toast.makeText(getActivity().getApplicationContext(),"Could not connect to server.", Toast.LENGTH_SHORT).show();
                             }
                             else{
                                 System.out.println("Response: PutUserPlant uspešno!");
+                                // TODO get actual plant name
                                 int imageResource = getResources().getIdentifier("@mipmap/cactus", null, getActivity().getPackageName());
-
                                 MyPlant temp = new MyPlant("" + response.body().getPlant().getId(), "" + imageResource, response.body().getPlant().getName(), response.body().getPlant().getDays_water(), response.body().getPlant().getInfo(), response.body().getPlant().getCare(), response.body().getId(),response.body().getLast_water_day(),response.body().getRemaining_water_days());
                                 plant.setLast_water_date(temp.getLast_water_date());
                                 plant.setRemaining_water_days(temp.getRemaining_water_days());

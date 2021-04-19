@@ -23,13 +23,12 @@ public class MyPlantsAdapter extends ArrayAdapter<MyPlant> {
 
     private Context mContext;
     private int mResource;
+    private LayoutInflater inflater;
 
     private String id;
     private String image;
     private String name;
     private int water;
-
-    private LayoutInflater inflater;
 
     private int apiPlantId;
     private Date last_water_date;
@@ -38,7 +37,6 @@ public class MyPlantsAdapter extends ArrayAdapter<MyPlant> {
     private ImageView tvImage;
     private TextView tvName;
     private TextView tvWater;
-
     public CheckBox simpleCheckBox;
 
     public MyPlantsAdapter(Context context, int resource, ArrayList<MyPlant> objects) {

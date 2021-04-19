@@ -24,19 +24,18 @@ public class SearchPlantsAdapter extends ArrayAdapter<MyPlant> implements Filter
 
     private Context mContext;
     private int mResource;
-    public ArrayList<MyPlant> plantsArrayList;
-    public ArrayList<MyPlant> orig;
+    private LayoutInflater inflater;
 
     private String id;
     private String image;
     private String name;
 
-    private LayoutInflater inflater;
-
     private ImageView tvImage;
     private TextView tvName;
-
     public CheckBox simpleCheckBox;
+
+    public ArrayList<MyPlant> plantsArrayList;
+    public ArrayList<MyPlant> orig;
 
     public SearchPlantsAdapter(Context context, int resource, ArrayList<MyPlant> objects) {
         super(context, resource, objects);
@@ -63,7 +62,7 @@ public class SearchPlantsAdapter extends ArrayAdapter<MyPlant> implements Filter
         tvImage.setImageResource(Integer.parseInt(image));
         tvName.setText(name);
 
-        // Dodamo na listo za dodajanje
+        // Add on list to save plants
         simpleCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton arg0, boolean arg1) {
@@ -83,7 +82,7 @@ public class SearchPlantsAdapter extends ArrayAdapter<MyPlant> implements Filter
         return convertView;
     }
 
-    public Filter getFilter() {
+    public Filter getFilter() { // Make filter for custom adapter
         return new Filter() {
 
             @Override

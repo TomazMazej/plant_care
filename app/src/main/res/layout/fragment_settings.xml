@@ -26,7 +26,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:background="@drawable/img"
+            android:background="@mipmap/profile_pic"
             android:scaleType="center"
             android:scaleX="2"
             android:scaleY="2" />
@@ -41,7 +41,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="@font/playfair_display_bold"
-            android:text="GUEST"
+            android:text="@string/guest"
             android:textSize="30sp" />
 
         <Space
@@ -54,7 +54,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="@font/playfair_display"
-            android:text="Notifications  "
+            android:text="@string/notifications"
             android:textColor="#575757"
             android:textSize="24sp"
             tools:ignore="UseSwitchCompatOrMaterialXml" />
@@ -100,7 +100,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="@font/playfair_display"
-            android:text="Theme  "
+            android:text="@string/theme"
             android:textColor="#575757"
             android:textSize="24sp"
             tools:ignore="UseSwitchCompatOrMaterialXml" />

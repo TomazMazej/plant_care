@@ -51,6 +51,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private NavigationView navigationView;
     private FragmentManager fragmentManager;
     private FragmentTransaction fragmentTransaction;
+
     private PlantCareApi plantCareApi;
     private SharedPreferences sp;
 
@@ -116,7 +117,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     call.enqueue(new Callback<Void>() {
                         @Override
                         public void onResponse(Call<Void> call, Response<Void> response) {
-                            if (!response.isSuccessful()) { // Če request ni uspešen
+                            if (!response.isSuccessful()) { // If request is not successful
                                 System.out.println("Response: DeleteUserPlant  neuspesno!");
                                 Toast.makeText(getApplicationContext(),"Could not connect to server.", Toast.LENGTH_SHORT).show();
                             } else {
@@ -145,7 +146,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     call.enqueue(new Callback<PostUserPlant>() {
                         @Override
                         public void onResponse(Call<PostUserPlant> call, Response<PostUserPlant> response) {
-                            if (!response.isSuccessful()) { // Če request ni uspešen
+                            if (!response.isSuccessful()) { // If request is not successful
                                 System.out.println("Response: PostUserPlant  neuspesno!");
                                 Toast.makeText(getApplicationContext(),"Could not connect to server.", Toast.LENGTH_SHORT).show();
                             } else {
@@ -199,7 +200,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
-    public static void hideButtons(){ //hides all the toolbar buttons
+    public static void hideButtons(){ // Hides all the toolbar buttons
         myMenu.findItem(R.id.general).setVisible(false);
         myMenu.findItem(R.id.other).setVisible(false);
         myMenu.findItem(R.id.delete_plants_btn).setVisible(false);

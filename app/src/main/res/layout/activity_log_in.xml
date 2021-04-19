@@ -8,8 +8,8 @@
 
     <LinearLayout
         android:id="@+id/login_layout"
-        android:layout_width="384dp"
-        android:layout_height="398dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:orientation="vertical">
 
@@ -32,7 +32,7 @@
             android:drawablePadding="8dp"
             android:fontFamily="@font/playfair_display"
             android:gravity="center_vertical"
-            android:hint="Email"
+            android:hint="@string/email"
             android:inputType="textEmailAddress"
             android:padding="10dp"
             android:singleLine="true"
@@ -54,7 +54,7 @@
             android:drawablePadding="8dp"
             android:fontFamily="@font/playfair_display"
             android:gravity="center_vertical"
-            android:hint="Password"
+            android:hint="@string/password"
             android:inputType="textPassword"
             android:padding="10dp"
             android:singleLine="true"
@@ -81,7 +81,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:fontFamily="@font/playfair_display"
-                android:text="Show password"
+                android:text="@string/show_password"
                 android:textColor="#504C4C"
                 android:textSize="12sp" />
 
@@ -93,7 +93,7 @@
                 android:fontFamily="@font/playfair_display"
                 android:gravity="end"
                 android:padding="5dp"
-                android:text="Forgot password?"
+                android:text="@string/forgot_password"
                 android:textColor="#605B5B"
                 android:textSize="12sp" />
         </LinearLayout>
@@ -106,7 +106,7 @@
             android:background="@drawable/button_style"
             android:fontFamily="@font/playfair_display_bold"
             android:padding="3dp"
-            android:text="login"
+            android:text="@string/login"
             android:textColor="#757272"
             android:textSize="17sp"
             android:textStyle="bold" />
@@ -135,11 +135,9 @@
                 android:fontFamily="@font/playfair_display"
                 android:gravity="center"
                 android:padding="5dp"
-                android:text="Sign up"
+                android:text="@string/sign_up"
                 android:textColor="#887979"
                 android:textSize="15sp" />
         </LinearLayout>
-
     </LinearLayout>
-
 </RelativeLayout>
