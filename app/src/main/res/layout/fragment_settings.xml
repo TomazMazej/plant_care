@@ -7,37 +7,57 @@
     android:layout_height="match_parent">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="?attr/actionBarSize"
+        android:background="@drawable/gradient_background3"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="70dp" />
 
         <ImageView
             android:id="@+id/profile_picture"
-            android:layout_width="124dp"
-            android:layout_height="131dp"
-            android:layout_marginTop="111dp"
-            app:srcCompat="@mipmap/cactus"
-            android:layout_gravity="center"/>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/img"
+            android:scaleType="center"
+            android:scaleX="2"
+            android:scaleY="2" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="56dp" />
 
         <TextView
             android:id="@+id/usernameTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="70dp"
-            android:layout_marginBottom="65dp"
+            android:layout_gravity="center"
+            android:fontFamily="@font/roboto_bold"
             android:text="GUEST"
-            android:textSize="30sp"
-            android:layout_gravity="center"/>
+            android:textSize="30sp" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="79dp" />
 
         <Switch
             android:id="@+id/Notifications_switch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
+            android:layout_gravity="center"
+            android:fontFamily="@font/roboto"
             android:text="Notifications  "
+            android:textColor="#575757"
             android:textSize="24sp"
-            tools:ignore="UseSwitchCompatOrMaterialXml"
-            android:layout_gravity="center"/>
+            tools:ignore="UseSwitchCompatOrMaterialXml" />
         <!-- <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/Notifications_switch"
             android:layout_width="wrap_content"
@@ -70,25 +90,33 @@
             app:layout_constraintTop_toBottomOf="@+id/Notifications_switch"
             app:showText="true"
             app:track="@drawable/switch_track" />-->
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="37dp" />
+
         <Switch
             android:id="@+id/Theme_switch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
+            android:layout_gravity="center"
+            android:fontFamily="@font/roboto"
             android:text="Theme  "
+            android:textColor="#575757"
             android:textSize="24sp"
-            tools:ignore="UseSwitchCompatOrMaterialXml"
-            android:layout_gravity="center"/>
+            tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="76dp" />
 
         <TextView
             android:id="@+id/plant_count"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="114dp"
-            android:text="My plants: 0"
-            android:textSize="24sp"
             android:layout_gravity="center"
-            android:layout_marginTop="30dp"/>
+            android:fontFamily="@font/roboto"
+            android:text="My plants: 0"
+            android:textSize="24sp" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

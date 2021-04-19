@@ -5,14 +5,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:layout_marginTop="?attr/actionBarSize"
+    android:background="@drawable/gradient_background3">
 
     <ImageView
         android:id="@+id/welcome_image"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:scaleType="centerCrop"
-        android:layout_marginTop="?attr/actionBarSize"
         android:contentDescription="homePic"
         android:src="@mipmap/home" />
 
@@ -22,10 +23,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:fontFamily="@font/archivo_black"
+        android:gravity="center_horizontal"
         android:text="WELCOME BACK!"
-        android:textColor="#67A617"
-        android:textSize="30sp"
-        android:gravity="center_horizontal" />
+        android:textColor="#5EAF6A"
+        android:textSize="30sp" />
 
     <TextView
         android:id="@+id/plant_info_text"

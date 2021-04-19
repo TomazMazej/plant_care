@@ -16,8 +16,8 @@
         <ImageView
             android:id="@+id/title_image"
             android:layout_width="match_parent"
-            android:layout_height="68dp"
-            app:srcCompat="@mipmap/logo" />
+            android:layout_height="75dp"
+            app:srcCompat="@mipmap/logoplayfare" />
 
         <EditText
             android:id="@+id/login_mail"
@@ -27,6 +27,7 @@
             android:background="@android:color/transparent"
             android:drawableLeft="@android:drawable/sym_action_email"
             android:drawablePadding="8dp"
+            android:fontFamily="@font/playfair_display"
             android:gravity="center_vertical"
             android:hint="Email"
             android:inputType="textEmailAddress"
@@ -48,6 +49,7 @@
             android:background="@android:color/transparent"
             android:drawableLeft="@android:drawable/ic_lock_idle_lock"
             android:drawablePadding="8dp"
+            android:fontFamily="@font/playfair_display"
             android:gravity="center_vertical"
             android:hint="Password"
             android:inputType="textPassword"
@@ -65,7 +67,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="86dp"
+            android:layout_height="75dp"
             android:orientation="horizontal"
             android:paddingTop="8dp"
             android:paddingBottom="5dp">
@@ -75,6 +77,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:fontFamily="@font/playfair_display"
                 android:text="Show password"
                 android:textColor="#504C4C"
                 android:textSize="12sp" />
@@ -84,6 +87,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:fontFamily="@font/playfair_display"
                 android:gravity="end"
                 android:padding="5dp"
                 android:text="Forgot password?"
@@ -97,6 +101,7 @@
             android:layout_height="37dp"
             android:layout_marginTop="3dp"
             android:background="@drawable/button_style"
+            android:fontFamily="@font/playfair_display_bold"
             android:padding="3dp"
             android:text="login"
             android:textColor="#757272"
@@ -110,7 +115,7 @@
 
             <TextView
                 android:id="@+id/error_text"
-                android:layout_width="289dp"
+                android:layout_width="265dp"
                 android:layout_height="48dp"
                 android:layout_weight="1"
                 android:text=""
@@ -120,9 +125,10 @@
             <Button
                 android:id="@+id/sign_up_button"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="60dp"
                 android:layout_marginTop="20dp"
                 android:background="#00501616"
+                android:fontFamily="@font/playfair_display"
                 android:gravity="center"
                 android:padding="5dp"
                 android:text="Sign up"

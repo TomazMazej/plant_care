@@ -1,24 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginTop="?attr/actionBarSize"
+    android:background="@drawable/gradient_background3"
     android:orientation="vertical">
 
-    <ImageView
-        android:id="@+id/plant_image"
+    <androidx.cardview.widget.CardView
+        android:layout_margin="10dp"
+        app:cardCornerRadius="35dp"
+        app:cardElevation="0dp"
         android:layout_width="match_parent"
         android:layout_height="300dp"
-        android:layout_marginTop="?attr/actionBarSize"
-        android:src="@mipmap/cactus" />
+        android:layout_marginTop="?attr/actionBarSize">
+
+        <ImageView
+            android:id="@+id/plant_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@mipmap/cactus" />
+    </androidx.cardview.widget.CardView>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="39dp" />
 
     <TextView
         android:id="@+id/info_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
         android:fontFamily="@font/archivo_black"
         android:gravity="left"
         android:text="Informations"
@@ -28,17 +44,27 @@
     <TextView
         android:id="@+id/info_text"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_height="147dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
         android:gravity="left"
-        android:text="Informacije o rastlini"
+        android:text="Plant information"
         android:textSize="20sp" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="16dp" />
 
     <TextView
         android:id="@+id/care_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
         android:fontFamily="@font/archivo_black"
         android:gravity="left"
         android:text="Care"
@@ -48,29 +74,38 @@
     <TextView
         android:id="@+id/care_text"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_height="98dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
         android:gravity="left"
-        android:text="Informacije o negi"
+        android:text="Care information"
         android:textSize="20sp" />
 
     <TextView
         android:id="@+id/need_water_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
         android:gravity="left"
         android:text=""
-        android:textSize="20sp"
         android:textColor="#FF0000"
-        android:visibility="invisible" />
+        android:textSize="20sp"
+        android:visibility="visible" />
 
     <Button
         android:id="@+id/water_plant_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Water plant"
-        android:visibility="invisible"
-        android:enabled="false" />
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/button_style2"
+        android:enabled="false"
+        android:text="PLANT WATERED"
+        android:textColor="#ECECEC"
+        android:visibility="visible" />
 
 </LinearLayout>
