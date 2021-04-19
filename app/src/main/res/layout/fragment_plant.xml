@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#7ABCDDBB"
     android:orientation="vertical">
 
     <ImageView
@@ -53,5 +53,24 @@
         android:gravity="left"
         android:text="Informacije o negi"
         android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/need_water_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="left"
+        android:text=""
+        android:textSize="20sp"
+        android:textColor="#FF0000"
+        android:visibility="invisible" />
+
+    <Button
+        android:id="@+id/water_plant_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Water plant"
+        android:visibility="invisible"
+        android:enabled="false" />
 
 </LinearLayout>

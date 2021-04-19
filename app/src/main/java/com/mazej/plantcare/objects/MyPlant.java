@@ -1,5 +1,7 @@
 package com.mazej.plantcare.objects;
 
+import java.util.Date;
+
 public class MyPlant {
 
     private String id;
@@ -9,6 +11,10 @@ public class MyPlant {
     private String info;
     private String care;
 
+    private int apiPlantId;
+    private Date last_water_date;
+    private Integer remaining_water_days;
+
     public MyPlant(String id, String image, String name, int water, String info, String care) {
         this.id = id;
         this.image = image;
@@ -17,6 +23,20 @@ public class MyPlant {
         this.info = info;
         this.care = care;
     }
+
+    //constructor used in myPlantsFragment
+    public MyPlant(String id, String image, String name, int water, String info, String care, int apiPlantId, Date last_water_date, Integer remaining_water_days) {
+        this.id = id;
+        this.image = image;
+        this.name = name;
+        this.water = water;
+        this.info = info;
+        this.care = care;
+        this.apiPlantId = apiPlantId;
+        this.last_water_date = last_water_date;
+        this.remaining_water_days = remaining_water_days;
+    }
+
 
     public String getId() {
         return id;
@@ -34,9 +54,7 @@ public class MyPlant {
         this.image = image;
     }
 
-    public String getName() {
-        return name;
-    }
+    public String getName() { return name; }
 
     public void setName(String name) {
         this.name = name;
@@ -64,5 +82,29 @@ public class MyPlant {
 
     public void setCare(String care) {
         this.care = care;
+    }
+
+    public int getApiPlantId() {
+        return apiPlantId;
+    }
+
+    public void setApiPlantId(int apiPlantId) {
+        this.apiPlantId = apiPlantId;
+    }
+
+    public Date getLast_water_date() {
+        return last_water_date;
+    }
+
+    public void setLast_water_date(Date last_water_date) {
+        this.last_water_date = last_water_date;
+    }
+
+    public Integer getRemaining_water_days() {
+        return remaining_water_days;
+    }
+
+    public void setRemaining_water_days(Integer remaining_water_days) {
+        this.remaining_water_days = remaining_water_days;
     }
 }

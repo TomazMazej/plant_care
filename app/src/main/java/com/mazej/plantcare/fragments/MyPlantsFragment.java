@@ -1,31 +1,50 @@
 package com.mazej.plantcare.fragments;
 
 import android.annotation.SuppressLint;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.mazej.plantcare.R;
+import com.mazej.plantcare.activities.MainActivity;
 import com.mazej.plantcare.adapters.MyPlantsAdapter;
+import com.mazej.plantcare.database.GetPlant;
+import com.mazej.plantcare.database.GetUserPlant;
+import com.mazej.plantcare.database.PlantCareApi;
+import com.mazej.plantcare.notifications.NotificationService;
 import com.mazej.plantcare.objects.MyPlant;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
 import static com.mazej.plantcare.activities.MainActivity.toolbar;
+import static com.mazej.plantcare.database.PlantCareApi.BASE_URL;
 
 public class MyPlantsFragment extends Fragment {
 
-    private static ListView myPlantsList;
-    private static ArrayList<MyPlant> theList;
-    private static MyPlantsAdapter arrayAdapter;
+    private PlantCareApi plantCareApi;
+    private SharedPreferences sp;
+
+    private ListView myPlantsList;
+    private ArrayList<MyPlant> theList;
+    public static MyPlantsAdapter arrayAdapter;
 
     public MyPlantsFragment() {
     }
@@ -39,16 +58,20 @@ public class MyPlantsFragment extends Fragment {
         toolbar.setTitleTextColor(Color.WHITE);
         toolbar.setTitle("My Plants");
 
+        MainActivity.myMenu.findItem(R.id.delete_plants_btn).setVisible(true);
+
         theList = new ArrayList<>();
         myPlantsList = view.findViewById(R.id.myPlantsList);
 
         arrayAdapter = new MyPlantsAdapter(getActivity().getBaseContext(), R.layout.adapter_my_plants, theList);
         myPlantsList.setAdapter(arrayAdapter);
 
+        sp = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
+
         // Add plants to list
         // Test insert... later we get data from database and add to list with loop
-        MyPlant plant = new MyPlant("0", "cactus", "Kaktus", 5, "Potegn mi ga", "2x");
-        theList.add(plant);
+        // MyPlant plant = new MyPlant("0", "cactus", "Kaktus", 5, "Potegn mi ga", "2x");
+        // theList.add(plant);
 
         myPlantsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @SuppressLint("WrongConstant")
@@ -61,6 +84,48 @@ public class MyPlantsFragment extends Fragment {
             }
         });
 
+        // Get all plants from current user
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        String token = "Bearer " + sp.getString("access_token","DEFAULT VALUE ERR");
+        plantCareApi = retrofit.create(PlantCareApi.class);
+        Call<List<GetUserPlant>> call = plantCareApi.createUserPlantGet(token);
+
+        call.enqueue(new Callback<List<GetUserPlant>>() {
+            @Override
+            public void onResponse(Call<List<GetUserPlant>> call, Response<List<GetUserPlant>> response) {
+                if (!response.isSuccessful()){ // Če request ni uspešen
+                    System.out.println("Response: GetUserPlant neuspesno!");
+                    Toast.makeText(getActivity().getApplicationContext(),"Could not connect to server.", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    System.out.println("Response: GetUserPlant uspešno!");
+                    int daysUntilWater = 1000;
+                    for(int i = 0; i< response.body().size(); i++ ){ // Add plants to list
+                        int imageResource = getResources().getIdentifier("@mipmap/cactus", null, getActivity().getPackageName());
+                        //int imageResource = getResources().getIdentifier("@mipmap/" + response.body().get(i).getImage_path(), null, getActivity().getPackageName());
+                        //MyPlant plant = new MyPlant("" + i, "" + imageResource, response.body().get(i).getName(), response.body().get(i).getDays_water(), response.body().get(i).getInfo(), response.body().get(i).getCare());
+                        MyPlant plant = new MyPlant("" + response.body().get(i).getPlant().getId(), "" + imageResource, response.body().get(i).getPlant().getName(), response.body().get(i).getPlant().getDays_water(), response.body().get(i).getPlant().getInfo(), response.body().get(i).getPlant().getCare(), response.body().get(i).getId(),response.body().get(i).getLast_water_day(),response.body().get(i).getRemaining_water_days());
+                        if(daysUntilWater > response.body().get(i).getRemaining_water_days()){
+                            daysUntilWater = response.body().get(i).getRemaining_water_days();
+                        }
+                        NotificationService.daysUntilWater = daysUntilWater;
+                        theList.add(plant);
+                    }
+                    arrayAdapter.notifyDataSetChanged();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<GetUserPlant>> call, Throwable t) {
+                System.out.println("No response: GetUserPlant neuspešno!");
+                System.out.println(t);
+                Toast.makeText(getActivity().getApplicationContext(),"Could not connect to server.", Toast.LENGTH_SHORT).show();
+            }
+        });
         return view;
     }
 }

@@ -27,6 +27,7 @@
         android:layout_weight="33.3"
         android:gravity="center"
         android:text="Name"
+        android:textSize="18dp"
         android:textAlignment="center"
         android:textColor="#000"
         android:textStyle="italic" />
@@ -39,15 +40,15 @@
         android:gravity="center"
         android:text="Text"
         android:textAlignment="center"
-        android:textColor="#006900"
+        android:textColor="#0EA80E"
         android:textStyle="bold" />
-
+    <!--android:button="@drawable/custom_checkbox"-->
     <CheckBox
         android:id="@+id/simpleCheckBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="   "
+        android:layout_width="93dp"
+        android:layout_height="67dp"
         android:checked="false"
-        android:focusable="false" />
+        android:focusable="false"
+        android:text="   " />
 
 </LinearLayout>
