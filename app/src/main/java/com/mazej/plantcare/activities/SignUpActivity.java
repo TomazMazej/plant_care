@@ -58,16 +58,15 @@ public class SignUpActivity extends AppCompatActivity {
                 plantCareApi = retrofit.create(PlantCareApi.class);
 
                 // If passwords match
-                if(password.getText().toString().equals(password2.getText().toString())){
+                if (password.getText().toString().equals(password2.getText().toString())) {
                     Call<PostSignUp> call = plantCareApi.createSignUpPost(username.getText().toString(), email.getText().toString(), password.getText().toString(), "");
 
                     call.enqueue(new Callback<PostSignUp>() {
                         @Override
                         public void onResponse(Call<PostSignUp> call, Response<PostSignUp> response) {
-                            if (!response.isSuccessful()){ // If request is not successful
+                            if (!response.isSuccessful()) { // If request is not successful
                                 System.out.println("Response: neuspesno!");
-                            }
-                            else{
+                            } else {
                                 System.out.println("Response: uspešno!");
                                 // Save access token to Shared Preferences
                                 sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
@@ -88,8 +87,7 @@ public class SignUpActivity extends AppCompatActivity {
                             errorText.setText("Failed to connect to server!");
                         }
                     });
-                }
-                else{
+                } else {
                     errorText.setText("Passwords do not match!");
                 }
             }

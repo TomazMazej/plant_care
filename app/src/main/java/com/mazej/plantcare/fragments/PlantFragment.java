@@ -70,11 +70,11 @@ public class PlantFragment extends Fragment {
         info.setText(plant.getInfo());
         care.setText(plant.getCare());
 
-        if(plant.getRemaining_water_days() != null){
+        if (plant.getRemaining_water_days() != null) {
             need_water.setVisibility(View.VISIBLE);
-            if(plant.getRemaining_water_days() == 0)
+            if (plant.getRemaining_water_days() == 0)
                 need_water.setText("Needs water today!");
-            else if(plant.getRemaining_water_days() == 1)
+            else if (plant.getRemaining_water_days() == 1)
                 need_water.setText("Needs water tommorow!");
             else
                 need_water.setText("Needs water in " + plant.getRemaining_water_days() + " days!");
@@ -92,28 +92,27 @@ public class PlantFragment extends Fragment {
                             .addConverterFactory(GsonConverterFactory.create())
                             .build();
 
-                    String token = "Bearer " + sp.getString("access_token","DEFAULT VALUE ERR");
+                    String token = "Bearer " + sp.getString("access_token", "DEFAULT VALUE ERR");
                     plantCareApi = retrofit.create(PlantCareApi.class);
                     Call<PutUserPlant> call = plantCareApi.createUserPlantPut(token, plant.getApiPlantId());
 
                     call.enqueue(new Callback<PutUserPlant>() {
                         @Override
                         public void onResponse(Call<PutUserPlant> call, Response<PutUserPlant> response) {
-                            if (!response.isSuccessful()){ // If request is not successful
+                            if (!response.isSuccessful()) { // If request is not successful
                                 System.out.println("Response: PutUserPlant neuspesno!");
-                                Toast.makeText(getActivity().getApplicationContext(),"Could not connect to server.", Toast.LENGTH_SHORT).show();
-                            }
-                            else{
+                                Toast.makeText(getActivity().getApplicationContext(), "Could not connect to server.", Toast.LENGTH_SHORT).show();
+                            } else {
                                 System.out.println("Response: PutUserPlant uspešno!");
                                 // TODO get actual plant name
                                 int imageResource = getResources().getIdentifier("@mipmap/cactus", null, getActivity().getPackageName());
-                                MyPlant temp = new MyPlant("" + response.body().getPlant().getId(), "" + imageResource, response.body().getPlant().getName(), response.body().getPlant().getDays_water(), response.body().getPlant().getInfo(), response.body().getPlant().getCare(), response.body().getId(),response.body().getLast_water_day(),response.body().getRemaining_water_days());
+                                MyPlant temp = new MyPlant("" + response.body().getPlant().getId(), "" + imageResource, response.body().getPlant().getName(), response.body().getPlant().getDays_water(), response.body().getPlant().getInfo(), response.body().getPlant().getCare(), response.body().getId(), response.body().getLast_water_day(), response.body().getRemaining_water_days());
                                 plant.setLast_water_date(temp.getLast_water_date());
                                 plant.setRemaining_water_days(temp.getRemaining_water_days());
 
-                                if(temp.getRemaining_water_days() == 0)
+                                if (temp.getRemaining_water_days() == 0)
                                     need_water.setText("Needs water today!");
-                                else if(temp.getRemaining_water_days() == 1)
+                                else if (temp.getRemaining_water_days() == 1)
                                     need_water.setText("Needs water tommorow!");
                                 else
                                     need_water.setText("Needs water in " + temp.getRemaining_water_days() + " days!");

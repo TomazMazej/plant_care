@@ -42,7 +42,9 @@ public class GetPlant {
         return info;
     }
 
-    public int getId() {return id;}
+    public int getId() {
+        return id;
+    }
 
     public void setInfo(String info) {
         this.info = info;

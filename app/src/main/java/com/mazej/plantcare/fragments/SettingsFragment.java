@@ -66,7 +66,7 @@ public class SettingsFragment extends Fragment {
 
         plantCareApi = retrofit.create(PlantCareApi.class);
 
-        String token = "Bearer " + sp.getString("access_token","DEFAULT VALUE ERR");
+        String token = "Bearer " + sp.getString("access_token", "DEFAULT VALUE ERR");
         Call<GetUser> call = plantCareApi.createUserGet(token);
 
         call.enqueue(new Callback<GetUser>() {
@@ -74,7 +74,7 @@ public class SettingsFragment extends Fragment {
             public void onResponse(Call<GetUser> call, Response<GetUser> response) {
                 if (!response.isSuccessful()) { // If request is not successful
                     System.out.println("Response: neuspesno!");
-                    Toast.makeText(getActivity().getApplicationContext(),"Could not connect to server.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity().getApplicationContext(), "Could not connect to server.", Toast.LENGTH_SHORT).show();
                 } else {
                     System.out.println("Response: uspešno!");
                     System.out.println(response.body().getUsername());

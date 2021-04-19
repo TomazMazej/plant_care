@@ -24,7 +24,7 @@ public class PutUserPlant {
         this.access_token = access_token;
     }
 
-    public Plant getPlant(){
+    public Plant getPlant() {
         return plant;
     }
 

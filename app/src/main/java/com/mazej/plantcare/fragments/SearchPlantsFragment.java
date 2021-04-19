@@ -44,7 +44,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import static com.mazej.plantcare.activities.MainActivity.toolbar;
 import static com.mazej.plantcare.database.PlantCareApi.BASE_URL;
 
-public class SearchPlantsFragment extends Fragment implements SearchView.OnQueryTextListener{
+public class SearchPlantsFragment extends Fragment implements SearchView.OnQueryTextListener {
 
     private PlantCareApi plantCareApi;
     private SharedPreferences sp;
@@ -90,20 +90,19 @@ public class SearchPlantsFragment extends Fragment implements SearchView.OnQuery
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        String token = "Bearer " + sp.getString("access_token","DEFAULT VALUE ERR");
+        String token = "Bearer " + sp.getString("access_token", "DEFAULT VALUE ERR");
         plantCareApi = retrofit.create(PlantCareApi.class);
         Call<List<GetPlant>> call = plantCareApi.createPlantGet(token);
 
         call.enqueue(new Callback<List<GetPlant>>() {
             @Override
             public void onResponse(Call<List<GetPlant>> call, Response<List<GetPlant>> response) {
-                if (!response.isSuccessful()){ // Če request ni uspešen
+                if (!response.isSuccessful()) { // Če request ni uspešen
                     System.out.println("Response: neuspesno!");
-                }
-                else{
+                } else {
                     System.out.println("Response: uspešno!");
                     // Dodamo rastline na listo
-                    for(int i = 0; i< response.body().size(); i++ ){
+                    for (int i = 0; i < response.body().size(); i++) {
                         int imageResource = getResources().getIdentifier("@mipmap/cactus", null, getActivity().getPackageName());
                         //int imageResource = getResources().getIdentifier("@mipmap/" + response.body().get(i).getImage_path(), null, getActivity().getPackageName());
                         //MyPlant plant = new MyPlant("" + i, "" + imageResource, response.body().get(i).getName(), response.body().get(i).getDays_water(), response.body().get(i).getInfo(), response.body().get(i).getCare());

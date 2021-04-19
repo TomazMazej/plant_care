@@ -59,24 +59,30 @@ public class MainFragment extends Fragment {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        String token = "Bearer " + sp.getString("access_token","DEFAULT VALUE ERR");
+        String token = "Bearer " + sp.getString("access_token", "DEFAULT VALUE ERR");
         plantCareApi = retrofit.create(PlantCareApi.class);
         Call<List<GetUserPlant>> call = plantCareApi.createUserPlantGet(token);
 
         call.enqueue(new Callback<List<GetUserPlant>>() {
             @Override
             public void onResponse(Call<List<GetUserPlant>> call, Response<List<GetUserPlant>> response) {
-                if (!response.isSuccessful()){ // If request is not successful
-                    Toast.makeText(getActivity().getApplicationContext(),"Could not connect to server.", Toast.LENGTH_SHORT).show();
-                }
-                else{
+                if (!response.isSuccessful()) { // If request is not successful
+                    Toast.makeText(getActivity().getApplicationContext(), "Could not connect to server.", Toast.LENGTH_SHORT).show();
+                } else {
                     plantCounter = response.body().size();
-                    for(int i = 0; i< response.body().size(); i++ ){ // Add plants to list
-
-                        if(response.body().get(i).getRemaining_water_days() == 0){
+                    for (int i = 0; i < response.body().size(); i++) { // Add plants to list
+                        System.out.println("" + i + " " + response.body().get(i).getRemaining_water_days());
+                        if (response.body().get(i).getRemaining_water_days() == 0) {
                             waterCounter++;
                         }
                     }
+                }
+                if (waterCounter == 0) {
+                    plantInfo.setText("All your plants are taken care of.");
+                } else if (waterCounter == 1) {
+                    plantInfo.setText("You have to water 1 plant today.");
+                } else {
+                    plantInfo.setText("You have to water " + waterCounter + " plants today.");
                 }
             }
 
@@ -87,16 +93,6 @@ public class MainFragment extends Fragment {
                 // Toast.makeText(getActivity().getApplicationContext(),"Could not connect to server.", Toast.LENGTH_SHORT).show();
             }
         });
-
-        if(waterCounter == 0){
-            plantInfo.setText("All your plants are taken care of.");
-        }
-        else if(waterCounter == 1){
-            plantInfo.setText("You have to water 1 plant today.");
-        }
-        else{
-            plantInfo.setText("You have to water " + waterCounter + " plants today.");
-        }
         return view;
     }
 }

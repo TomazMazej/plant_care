@@ -84,7 +84,7 @@ public class NotificationService extends Service {
         };
     }
 
-    public void createNotification(){
+    public void createNotification() {
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "id")
                 .setSmallIcon(R.drawable.ic_local_florist_black_24dp)
                 .setContentTitle("Water your plants!")

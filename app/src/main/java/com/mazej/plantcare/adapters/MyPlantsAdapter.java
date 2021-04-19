@@ -66,9 +66,9 @@ public class MyPlantsAdapter extends ArrayAdapter<MyPlant> {
         tvImage.setImageResource(R.mipmap.cactus);
         tvName.setText(name);
 
-        if(water == 0)
+        if (water == 0)
             tvWater.setText("Needs water today!");
-        else if(water == 1)
+        else if (water == 1)
             tvWater.setText("Needs water tommmorow!");
         else
             tvWater.setText("Needs water in " + water + " days");
@@ -81,10 +81,9 @@ public class MyPlantsAdapter extends ArrayAdapter<MyPlant> {
                     MainActivity.deleteList.add(getItem(position).getApiPlantId());
                     System.out.println(position);
                     System.out.println(getItem(position).getApiPlantId());
-                }
-                else{
-                    for(int i = 0; i < MainActivity.deleteList.size(); i++){
-                        if(MainActivity.deleteList.get(i) == getItem(position).getApiPlantId()){
+                } else {
+                    for (int i = 0; i < MainActivity.deleteList.size(); i++) {
+                        if (MainActivity.deleteList.get(i) == getItem(position).getApiPlantId()) {
                             MainActivity.deleteList.remove(i);
                         }
                     }

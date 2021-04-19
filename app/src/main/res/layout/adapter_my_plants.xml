@@ -15,9 +15,9 @@
         <ImageView
             android:id="@+id/plantImage"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="71dp"
             android:layout_gravity="center"
-            android:src="@mipmap/cactus" />
+            android:src="@mipmap/narcis" />
     </LinearLayout>
 
     <TextView
@@ -48,7 +48,7 @@
     <CheckBox
         android:id="@+id/simpleCheckBox"
         android:layout_width="93dp"
-        android:layout_height="67dp"
+        android:layout_height="71dp"
         android:checked="false"
         android:focusable="false"
         android:text=" " />

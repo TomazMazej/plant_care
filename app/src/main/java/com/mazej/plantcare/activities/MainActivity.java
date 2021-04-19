@@ -42,7 +42,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 import static com.mazej.plantcare.database.PlantCareApi.BASE_URL;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     public static Menu myMenu;
     private DrawerLayout drawerLayout;
@@ -107,11 +107,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 .build();
 
         plantCareApi = retrofit.create(PlantCareApi.class);
-        String token = "Bearer " + sp.getString("access_token","DEFAULT VALUE ERR");
+        String token = "Bearer " + sp.getString("access_token", "DEFAULT VALUE ERR");
 
-        switch(item.getItemId()) {
+        switch (item.getItemId()) {
             case R.id.delete_plants_btn:
-                for(int i = 0; i < deleteList.size(); i++) {
+                for (int i = 0; i < deleteList.size(); i++) {
                     Call<Void> call = plantCareApi.createUserPlantDelete(token, deleteList.get(i));
 
                     call.enqueue(new Callback<Void>() {
@@ -119,7 +119,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         public void onResponse(Call<Void> call, Response<Void> response) {
                             if (!response.isSuccessful()) { // If request is not successful
                                 System.out.println("Response: DeleteUserPlant  neuspesno!");
-                                Toast.makeText(getApplicationContext(),"Could not connect to server.", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), "Could not connect to server.", Toast.LENGTH_SHORT).show();
                             } else {
                                 System.out.println("Response:DeleteUserPlant uspešno!");
                                 fragmentManager = getSupportFragmentManager();
@@ -133,22 +133,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         public void onFailure(Call<Void> call, Throwable t) {
                             System.out.println("No response: DeleteUserPlant  neuspešno!");
                             System.out.println(t);
-                            Toast.makeText(getApplicationContext(),"Could not connect to server.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "Could not connect to server.", Toast.LENGTH_SHORT).show();
                         }
                     });
                 }
                 deleteList.clear();
                 break;
             case R.id.add_plants_btn:
-                for(int i = 0; i < addPlantsList.size(); i++) {
-                    Call<PostUserPlant> call = plantCareApi.createUserPlantPost(token,addPlantsList.get(i));
+                for (int i = 0; i < addPlantsList.size(); i++) {
+                    Call<PostUserPlant> call = plantCareApi.createUserPlantPost(token, addPlantsList.get(i));
 
                     call.enqueue(new Callback<PostUserPlant>() {
                         @Override
                         public void onResponse(Call<PostUserPlant> call, Response<PostUserPlant> response) {
                             if (!response.isSuccessful()) { // If request is not successful
                                 System.out.println("Response: PostUserPlant  neuspesno!");
-                                Toast.makeText(getApplicationContext(),"Could not connect to server.", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), "Could not connect to server.", Toast.LENGTH_SHORT).show();
                             } else {
                                 System.out.println("Response: PostUserPlant uspešno!");
                                 fragmentManager = getSupportFragmentManager();
@@ -162,7 +162,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         public void onFailure(Call<PostUserPlant> call, Throwable t) {
                             System.out.println("No response: PostUserPlant  neuspešno!");
                             System.out.println(t);
-                            Toast.makeText(getApplicationContext(),"Could not connect to server.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "Could not connect to server.", Toast.LENGTH_SHORT).show();
                         }
                     });
                 }
@@ -171,7 +171,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             default:
                 return super.onOptionsItemSelected(item);
         }
-            return true;
+        return true;
     }
 
     @Override
@@ -182,32 +182,32 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         fragmentManager = getSupportFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
 
-        if(menuItem.getItemId() == R.id.home){
+        if (menuItem.getItemId() == R.id.home) {
             fragmentTransaction.replace(R.id.container_fragment, new MainFragment());
         }
-        if(menuItem.getItemId() == R.id.my_plants){
+        if (menuItem.getItemId() == R.id.my_plants) {
             myMenu.findItem(R.id.delete_plants_btn).setVisible(true);
             fragmentTransaction.replace(R.id.container_fragment, new MyPlantsFragment());
         }
-        if(menuItem.getItemId() == R.id.search_plants){
+        if (menuItem.getItemId() == R.id.search_plants) {
             myMenu.findItem(R.id.add_plants_btn).setVisible(true);
             fragmentTransaction.replace(R.id.container_fragment, new SearchPlantsFragment());
         }
-        if(menuItem.getItemId() == R.id.settings){
+        if (menuItem.getItemId() == R.id.settings) {
             fragmentTransaction.replace(R.id.container_fragment, new SettingsFragment());
         }
         fragmentTransaction.commit();
         return true;
     }
 
-    public static void hideButtons(){ // Hides all the toolbar buttons
+    public static void hideButtons() { // Hides all the toolbar buttons
         myMenu.findItem(R.id.general).setVisible(false);
         myMenu.findItem(R.id.other).setVisible(false);
         myMenu.findItem(R.id.delete_plants_btn).setVisible(false);
         myMenu.findItem(R.id.add_plants_btn).setVisible(false);
     }
 
-    private void createNotificationsChanel(){
+    private void createNotificationsChanel() {
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
             CharSequence name = "notificationsChanel";
             String description = "Chanel to notify when we need to water our plants.";

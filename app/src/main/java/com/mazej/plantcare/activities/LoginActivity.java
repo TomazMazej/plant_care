@@ -56,8 +56,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton arg0, boolean arg1) {
                 if (arg1) {
                     password.setTransformationMethod(null);
-                }
-                else{
+                } else {
                     password.setTransformationMethod(new PasswordTransformationMethod());
                 }
             }
@@ -79,11 +78,10 @@ public class LoginActivity extends AppCompatActivity {
                 call.enqueue(new Callback<PostLogIn>() {
                     @Override
                     public void onResponse(Call<PostLogIn> call, Response<PostLogIn> response) {
-                        if (!response.isSuccessful()){ // If request is not successful
+                        if (!response.isSuccessful()) { // If request is not successful
                             System.out.println("Response: neuspesno!");
                             errorText.setText("Wrong email or password!");
-                        }
-                        else{
+                        } else {
                             System.out.println("Response: Login uspešno!");
                             // Save access_token to shared preferences
                             sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
