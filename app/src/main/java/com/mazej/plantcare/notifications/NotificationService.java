@@ -19,7 +19,7 @@ public class NotificationService extends Service {
     private Timer timer;
     private TimerTask timerTask;
     private String TAG = "Timers";
-    public static int daysUntilWater;
+    public static int daysUntilWater = 0;
 
     @Override
     public IBinder onBind(Intent arg0) {

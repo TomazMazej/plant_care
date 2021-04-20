@@ -30,10 +30,6 @@ public class MyPlantsAdapter extends ArrayAdapter<MyPlant> {
     private String name;
     private int water;
 
-    private int apiPlantId;
-    private Date last_water_date;
-    private int remaining_water_days;
-
     private ImageView tvImage;
     private TextView tvName;
     private TextView tvWater;
@@ -53,7 +49,6 @@ public class MyPlantsAdapter extends ArrayAdapter<MyPlant> {
         image = getItem(position).getImage();
         name = getItem(position).getName();
         water = getItem(position).getRemaining_water_days();
-        //apiPlantId = getItem(position)
 
         inflater = LayoutInflater.from(mContext);
         convertView = inflater.inflate(mResource, parent, false);
@@ -63,15 +58,15 @@ public class MyPlantsAdapter extends ArrayAdapter<MyPlant> {
         tvWater = (TextView) convertView.findViewById(R.id.waterText);
         simpleCheckBox = (CheckBox) convertView.findViewById(R.id.simpleCheckBox);
 
-        tvImage.setImageResource(R.mipmap.cactus);
+        tvImage.setImageResource(Integer.parseInt(image));
         tvName.setText(name);
 
         if (water == 0)
-            tvWater.setText("Needs water today!");
+            tvWater.setText("Water today!");
         else if (water == 1)
-            tvWater.setText("Needs water tommmorow!");
+            tvWater.setText("Water tommmorow!");
         else
-            tvWater.setText("Needs water in " + water + " days");
+            tvWater.setText("Water in " + water + " days");
 
         // Adds item to remove list
         simpleCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {

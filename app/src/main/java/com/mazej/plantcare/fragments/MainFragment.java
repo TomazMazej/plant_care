@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.mazej.plantcare.R;
+import com.mazej.plantcare.activities.MainActivity;
 import com.mazej.plantcare.database.GetUserPlant;
 import com.mazej.plantcare.database.PlantCareApi;
 
@@ -25,15 +26,16 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import static com.mazej.plantcare.activities.MainActivity.hideButtons;
 import static com.mazej.plantcare.activities.MainActivity.toolbar;
 import static com.mazej.plantcare.database.PlantCareApi.BASE_URL;
 
 public class MainFragment extends Fragment {
 
+    private TextView plantInfo;
+
     private PlantCareApi plantCareApi;
     private SharedPreferences sp;
-
-    private TextView plantInfo;
 
     private int waterCounter = 0;
     public static int plantCounter = 0;
@@ -67,11 +69,10 @@ public class MainFragment extends Fragment {
             @Override
             public void onResponse(Call<List<GetUserPlant>> call, Response<List<GetUserPlant>> response) {
                 if (!response.isSuccessful()) { // If request is not successful
-                    Toast.makeText(getActivity().getApplicationContext(), "Could not connect to server.", Toast.LENGTH_SHORT).show();
+                    System.out.println("Response: GetUserPlant neuspešno!");
                 } else {
                     plantCounter = response.body().size();
                     for (int i = 0; i < response.body().size(); i++) { // Add plants to list
-                        System.out.println("" + i + " " + response.body().get(i).getRemaining_water_days());
                         if (response.body().get(i).getRemaining_water_days() == 0) {
                             waterCounter++;
                         }
@@ -90,7 +91,6 @@ public class MainFragment extends Fragment {
             public void onFailure(Call<List<GetUserPlant>> call, Throwable t) {
                 System.out.println("No response: GetUserPlant neuspešno!");
                 System.out.println(t);
-                // Toast.makeText(getActivity().getApplicationContext(),"Could not connect to server.", Toast.LENGTH_SHORT).show();
             }
         });
         return view;

@@ -68,7 +68,6 @@ public class SearchPlantsFragment extends Fragment implements SearchView.OnQuery
 
         MainActivity.myMenu.findItem(R.id.add_plants_btn).setVisible(true);
 
-
         searchPlantsList = view.findViewById(R.id.myPlantsList);
         searchView = view.findViewById(R.id.searchView);
 
@@ -77,13 +76,6 @@ public class SearchPlantsFragment extends Fragment implements SearchView.OnQuery
         arrayAdapter = new SearchPlantsAdapter(getActivity().getBaseContext(), R.layout.adapter_search_plants, theList);
         searchPlantsList.setAdapter(arrayAdapter);
         searchPlantsList.setTextFilterEnabled(true);
-
-        // Add plants to list
-        // Test insert
-        //MyPlant plant = new MyPlant("0", "" + getResources().getIdentifier("@mipmap/cactus", null, getActivity().getPackageName()), "Kaktus", 5, "Potegn mi ga", "2x");
-        //theList.add(plant);
-        //MyPlant plant2 = new MyPlant("1", "" + getResources().getIdentifier("@mipmap/cactus", null, getActivity().getPackageName()), "Lila", 5, "Potegn mi ga", "2x");
-        //theList.add(plant2);
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -103,9 +95,7 @@ public class SearchPlantsFragment extends Fragment implements SearchView.OnQuery
                     System.out.println("Response: uspešno!");
                     // Dodamo rastline na listo
                     for (int i = 0; i < response.body().size(); i++) {
-                        int imageResource = getResources().getIdentifier("@mipmap/cactus", null, getActivity().getPackageName());
-                        //int imageResource = getResources().getIdentifier("@mipmap/" + response.body().get(i).getImage_path(), null, getActivity().getPackageName());
-                        //MyPlant plant = new MyPlant("" + i, "" + imageResource, response.body().get(i).getName(), response.body().get(i).getDays_water(), response.body().get(i).getInfo(), response.body().get(i).getCare());
+                        int imageResource = getResources().getIdentifier("@mipmap/" + response.body().get(i).getImage_path(), null, getActivity().getPackageName());
                         MyPlant plant = new MyPlant("" + response.body().get(i).getId(), "" + imageResource, response.body().get(i).getName(), response.body().get(i).getDays_water(), response.body().get(i).getInfo(), response.body().get(i).getCare());
                         plant.setRemaining_water_days(null);
                         theList.add(plant);

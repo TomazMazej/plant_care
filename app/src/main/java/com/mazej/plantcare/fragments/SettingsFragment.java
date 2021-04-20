@@ -77,8 +77,6 @@ public class SettingsFragment extends Fragment {
                     Toast.makeText(getActivity().getApplicationContext(), "Could not connect to server.", Toast.LENGTH_SHORT).show();
                 } else {
                     System.out.println("Response: uspešno!");
-                    System.out.println(response.body().getUsername());
-
                     // Set username and switch as it apears in API
                     userTextView.setText(response.body().getUsername());
                     sw.setChecked(response.body().getNotifications());

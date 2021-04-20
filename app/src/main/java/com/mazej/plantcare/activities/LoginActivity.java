@@ -71,9 +71,8 @@ public class LoginActivity extends AppCompatActivity {
                         .build();
 
                 plantCareApi = retrofit.create(PlantCareApi.class);
-                // TODO uncomment this
-                // Call<PostSignIn> call = plantCareApi.createLogInPost(email.getText().toString(), password.getText().toString());
-                Call<PostLogIn> call = plantCareApi.createLogInPost("info@plant-care.com", "PlantCare2021!", "");
+                Call<PostLogIn> call = plantCareApi.createLogInPost(email.getText().toString(), password.getText().toString(), "");
+                // Call<PostLogIn> call = plantCareApi.createLogInPost("info@plant-care.com", "PlantCare2021!", "");
 
                 call.enqueue(new Callback<PostLogIn>() {
                     @Override
@@ -100,10 +99,9 @@ public class LoginActivity extends AppCompatActivity {
                     public void onFailure(Call<PostLogIn> call, Throwable t) {
                         System.out.println("No response: neuspešno!");
                         errorText.setText("Failed to connect to the server!");
-                        // TODO delete this
-                        Intent a = new Intent(getApplicationContext(), MainActivity.class);
+                        /*Intent a = new Intent(getApplicationContext(), MainActivity.class);
                         a.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        startActivity(a);
+                        startActivity(a);*/
                     }
                 });
             }

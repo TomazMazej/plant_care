@@ -100,6 +100,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) { // Handles toolbar buttons
+        hideButtons();
         sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -119,7 +120,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         public void onResponse(Call<Void> call, Response<Void> response) {
                             if (!response.isSuccessful()) { // If request is not successful
                                 System.out.println("Response: DeleteUserPlant  neuspesno!");
-                                Toast.makeText(getApplicationContext(), "Could not connect to server.", Toast.LENGTH_SHORT).show();
                             } else {
                                 System.out.println("Response:DeleteUserPlant uspešno!");
                                 fragmentManager = getSupportFragmentManager();
@@ -133,7 +133,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         public void onFailure(Call<Void> call, Throwable t) {
                             System.out.println("No response: DeleteUserPlant  neuspešno!");
                             System.out.println(t);
-                            Toast.makeText(getApplicationContext(), "Could not connect to server.", Toast.LENGTH_SHORT).show();
                         }
                     });
                 }
@@ -148,7 +147,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         public void onResponse(Call<PostUserPlant> call, Response<PostUserPlant> response) {
                             if (!response.isSuccessful()) { // If request is not successful
                                 System.out.println("Response: PostUserPlant  neuspesno!");
-                                Toast.makeText(getApplicationContext(), "Could not connect to server.", Toast.LENGTH_SHORT).show();
                             } else {
                                 System.out.println("Response: PostUserPlant uspešno!");
                                 fragmentManager = getSupportFragmentManager();
@@ -162,7 +160,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         public void onFailure(Call<PostUserPlant> call, Throwable t) {
                             System.out.println("No response: PostUserPlant  neuspešno!");
                             System.out.println(t);
-                            Toast.makeText(getApplicationContext(), "Could not connect to server.", Toast.LENGTH_SHORT).show();
                         }
                     });
                 }

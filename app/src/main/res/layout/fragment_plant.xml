@@ -1,92 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
     android:layout_marginTop="?attr/actionBarSize"
-    android:background="@drawable/gradient_background3"
-    android:orientation="vertical">
+    android:background="@drawable/gradient_background3">
 
-    <androidx.cardview.widget.CardView
-        android:layout_margin="10dp"
-        app:cardCornerRadius="35dp"
-        app:cardElevation="0dp"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="?attr/actionBarSize">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/plant_image"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@mipmap/narcis" />
-    </androidx.cardview.widget.CardView>
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/info_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:fontFamily="@font/playfair_display_bold"
-        android:gravity="start"
-        android:text="@string/informations"
-        android:textColor="#000"
-        android:textSize="30sp" />
+            <ImageView
+                android:id="@+id/plant_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:src="@mipmap/bonsai"
+                android:background="@drawable/border" />
 
-    <TextView
-        android:id="@+id/info_text"
-        android:layout_width="match_parent"
-        android:padding="10dp"
-        android:layout_height="100dp"
-        android:fontFamily="@font/playfair_display"
-        android:gravity="left"
-        android:text="Plant information"
-        android:textSize="20sp" />
+            <TextView
+                android:id="@+id/info_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/playfair_display_bold"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="@string/informations"
+                android:textColor="#000"
+                android:textSize="30sp" />
 
-    <TextView
-        android:id="@+id/care_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:fontFamily="@font/playfair_display_bold"
-        android:gravity="start"
-        android:text="@string/care"
-        android:textColor="#000"
-        android:textSize="30sp" />
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                app:cardCornerRadius="35dp"
+                app:cardElevation="0dp">
 
-    <TextView
-        android:id="@+id/care_text"
-        android:layout_width="match_parent"
-        android:layout_height="98dp"
-        android:padding="10dp"
-        android:fontFamily="@font/playfair_display"
-        android:gravity="left"
-        android:text="Care information"
-        android:textSize="20sp" />
+                <TextView
+                    android:id="@+id/info_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/playfair_display"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:text="Plant information"
+                    android:textSize="20sp" />
 
-    <TextView
-        android:id="@+id/need_water_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/playfair_display"
-        android:gravity="left"
-        android:text=""
-        android:textColor="#FF0000"
-        android:textSize="20sp"
-        android:visibility="invisible" />
+            </androidx.cardview.widget.CardView>
 
-    <Button
-        android:id="@+id/water_plant_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:background="@drawable/button_style2"
-        android:enabled="false"
-        android:fontFamily="@font/playfair_display_bold"
-        android:text="PLANT WATERED"
-        android:textColor="#ECECEC"
-        android:visibility="invisible" />
+            <TextView
+                android:id="@+id/care_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/playfair_display_bold"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="@string/care"
+                android:textColor="#000"
+                android:textSize="30sp" />
 
-</LinearLayout>
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                app:cardCornerRadius="35dp"
+                app:cardElevation="0dp">
+
+                <TextView
+                    android:id="@+id/care_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/playfair_display"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:text="Care information"
+                    android:textSize="20sp" />
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/need_water_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/playfair_display"
+                android:gravity="right"
+                android:text="Water today"
+                android:layout_marginRight="10dp"
+                android:textColor="#FF0000"
+                android:textSize="20sp"
+                android:visibility="invisible"
+                android:layout_marginEnd="10dp" />
+
+            <Button
+                android:id="@+id/water_plant_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_style2"
+                android:enabled="false"
+                android:fontFamily="@font/playfair_display_bold"
+                android:text="Water plant"
+                android:textColor="#ECECEC"
+                android:visibility="invisible" />
+
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

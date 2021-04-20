@@ -94,15 +94,11 @@ public class MyPlantsFragment extends Fragment {
             public void onResponse(Call<List<GetUserPlant>> call, Response<List<GetUserPlant>> response) {
                 if (!response.isSuccessful()) { // If request is not successful
                     System.out.println("Response: GetUserPlant neuspesno!");
-                    Toast.makeText(getActivity().getApplicationContext(), "Could not connect to server.", Toast.LENGTH_SHORT).show();
                 } else {
                     System.out.println("Response: GetUserPlant uspešno!");
                     int daysUntilWater = 1000;
                     for (int i = 0; i < response.body().size(); i++) { // Add plants to list
-                        int imageResource = getResources().getIdentifier("@mipmap/cactus", null, getActivity().getPackageName());
-                        // TODO uncomment
-                        //int imageResource = getResources().getIdentifier("@mipmap/" + response.body().get(i).getImage_path(), null, getActivity().getPackageName());
-                        //MyPlant plant = new MyPlant("" + i, "" + imageResource, response.body().get(i).getName(), response.body().get(i).getDays_water(), response.body().get(i).getInfo(), response.body().get(i).getCare());
+                        int imageResource = getResources().getIdentifier("@mipmap/" + response.body().get(i).getPlant().getImage_path(), null, getActivity().getPackageName());
                         MyPlant plant = new MyPlant("" + response.body().get(i).getPlant().getId(), "" + imageResource, response.body().get(i).getPlant().getName(), response.body().get(i).getPlant().getDays_water(), response.body().get(i).getPlant().getInfo(), response.body().get(i).getPlant().getCare(), response.body().get(i).getId(), response.body().get(i).getLast_water_day(), response.body().get(i).getRemaining_water_days());
                         // Tell notification service when to raise notification
                         if (daysUntilWater > response.body().get(i).getRemaining_water_days()) {

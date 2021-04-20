@@ -14,21 +14,22 @@
 
         <ImageView
             android:id="@+id/plantImage"
-            android:layout_width="match_parent"
+            android:layout_width="100dp"
             android:layout_height="71dp"
-            android:layout_gravity="center"
-            android:src="@mipmap/narcis" />
+            android:padding="5dp"
+            android:src="@mipmap/narcissus" />
     </LinearLayout>
 
     <TextView
         android:id="@+id/nameText"
         android:layout_width="match_parent"
         android:layout_height="71dp"
+        android:padding="5dp"
         android:layout_weight="33.3"
         android:fontFamily="@font/playfair_display"
         android:gravity="center"
         android:text="@string/name"
-        android:textAlignment="center"
+        android:textAlignment="textStart"
         android:textColor="#000"
         android:textSize="18sp"
         android:textStyle="italic" />
@@ -40,15 +41,16 @@
         android:layout_weight="33.3"
         android:fontFamily="@font/playfair_display"
         android:gravity="center"
-        android:text="@string/text"
+        android:padding="5dp"
+        android:text="Water in 5 days!"
         android:textAlignment="center"
         android:textColor="#0EA80E"
         android:textStyle="bold" />
-    <!--android:button="@drawable/custom_checkbox"-->
+
     <CheckBox
         android:id="@+id/simpleCheckBox"
-        android:layout_width="93dp"
-        android:layout_height="71dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:checked="false"
         android:focusable="false"
         android:text=" " />
