@@ -11,13 +11,25 @@ App for taking care of plants. Don't let your plants die anymore.
 * Requires [Plant Care API](https://github.com/jakapurg/plant_care-api) to receive and send data
 
 ## Development
+Run API:
 ```
 docker-compose up
 npm start
 ```
 In emulator settings change Host name to your Ipv4 and Port number to 3000
 
+## TO-DO
+* Add function to change theme to dark mode in settings
+* Add function to let user change his username and password
+* Make design prettier
+
 ## Pictures
-![Image1](/pictures/pc1.png)
-![Image2](/pictures/pc2.png)
-![Image3](/pictures/pc3.png)
+![Image1](/pictures/pc_login.png)
+![Image2](/pictures/pc_home.png)
+![Image3](/pictures/pc_drawer.png)
+![Image5](/pictures/pc_search.png)
+![Image6](/pictures/pc_myplants.png)
+![Image7](/pictures/pc_plant.png)
+![Image8](/pictures/pc_settings.png)
+
+
