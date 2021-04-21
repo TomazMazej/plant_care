@@ -8,7 +8,7 @@ App for taking care of plants. Don't let your plants die anymore.
 
 ## Tehnologies
 * Aplication is based in Android Studio
-* Requires [Plant Care API](https://github.com/jakapurg/plant_care-api) to receive and send data
+* Requires [Plant Care API](https://github.com/TomazMazej/plant_care-api) to receive and send data
 
 ## Development
 Run API:
